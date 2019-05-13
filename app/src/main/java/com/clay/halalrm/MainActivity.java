@@ -2,6 +2,7 @@ package com.clay.halalrm;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -23,13 +24,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
 import com.clay.halalrm.fragment.dummy.DummyContent;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, RumahMakanFragment.OnListFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+        , RumahMakanFragment.OnListFragmentInteractionListener
+        , MainFragment.OnFragmentInteractionListener
+{
 
         FloatingActionButton fab;
         TextView navUserMain,navUserSub;
@@ -68,6 +73,12 @@ public class MainActivity extends AppCompatActivity
 
     private void UserView() {
         hideFloatingActionButton(fab);
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragmentData = new MainFragment();
+        FragmentTransaction fragmentTransaction = MainActivity.this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.FrameFragment,fragmentData);
+        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -177,9 +188,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_all) {
             fragmentData = new RumahMakanFragment();
+            setViewDataAll();
 //            setPengunaView();
             // Handle the camera action
         } else if (id == R.id.nav_main) {
+            fragmentData = new MainFragment();
+            setViewMain();
 
         } else if (id == R.id.nav_jawa) {
 
@@ -199,6 +213,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void setViewDataAll() {
+        showFloatingActionButton(fab);
+
+    }
+
+    private void setViewMain() {
+        hideFloatingActionButton(fab);
     }
 
     private void hideFloatingActionButton(FloatingActionButton fab) {
@@ -238,5 +261,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         System.out.println("item = " + item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        System.out.println("uri = " + uri);
     }
 }
