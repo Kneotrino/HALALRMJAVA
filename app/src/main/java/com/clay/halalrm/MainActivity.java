@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -27,6 +28,8 @@ import android.widget.TextView;
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
 import com.clay.halalrm.fragment.dummy.DummyContent;
+import com.orm.SugarContext;
+import com.orm.SugarDb;
 
 import java.util.ArrayList;
 
@@ -40,9 +43,29 @@ public class MainActivity extends AppCompatActivity
         TextView navUserMain,navUserSub;
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SugarContext.terminate();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(SessionHelper.getInstance(this).getAppFirstTime()){
+            Log.d("MainApp","First session");
+            SugarDb db = new SugarDb(this);
+            db.onCreate(db.getDB());
+            SessionHelper.getInstance(this).setAppFirstTime(false);
+            InputData();
+        }
+        else {
+            Log.d("MainApp","Not First session");
+        }
+
+        SugarContext.init(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -69,6 +92,10 @@ public class MainActivity extends AppCompatActivity
         navUserSub = (TextView) headerView.findViewById(R.id.txtSub);
 
         UserView();
+    }
+
+    private void InputData() {
+        
     }
 
     private void UserView() {
