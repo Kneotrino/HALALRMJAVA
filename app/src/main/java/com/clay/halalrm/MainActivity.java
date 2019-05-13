@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,10 +23,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.clay.halalrm.fragment.RumahMakanFragment;
+import com.clay.halalrm.fragment.dummy.DummyContent;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, RumahMakanFragment.OnListFragmentInteractionListener {
 
         FloatingActionButton fab;
         TextView navUserMain,navUserSub;
@@ -166,7 +172,12 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragmentData = null;
+
         if (id == R.id.nav_all) {
+            fragmentData = new RumahMakanFragment();
+//            setPengunaView();
             // Handle the camera action
         } else if (id == R.id.nav_main) {
 
@@ -179,6 +190,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_exit) {
             System.exit(0);
         }
+
+        FragmentTransaction fragmentTransaction = MainActivity.this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.FrameFragment,fragmentData);
+        fragmentTransaction.commit();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -210,4 +226,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void makeSnakeBar(View view,String txt){
+
+        if (view == null)
+            view = findViewById(fab.getId());
+        Snackbar.make(view, txt, Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
+
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+        System.out.println("item = " + item);
+    }
 }
