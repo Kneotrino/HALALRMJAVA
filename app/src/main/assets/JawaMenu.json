@@ -1,0 +1,59 @@
+{
+  "results": [	{
+    "id": "1",
+    "menu": "Nasi Pecel Lele",
+    "Harga": "25000.00"
+  },
+    {
+      "id": "2",
+      "menu": "Nasi Ayam Lalapan",
+      "Harga": "25000.00"
+    },
+    {
+      "id": "3",
+      "menu": "Nasi Sate",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "4",
+      "menu": "Nasi Gule",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "5",
+      "menu": "Gado - Gado",
+      "Harga": "15000.00"
+    },
+    {
+      "id": "6",
+      "menu": "Nasi Caampur",
+      "Harga": "13000.00"
+    },
+    {
+      "id": "7",
+      "menu": "Nasi Telur",
+      "Harga": "12000.00"
+    },
+    {
+      "id": "8",
+      "menu": "Nasi Rendang",
+      "Harga": "18000.00"
+    },
+    {
+      "id": "9",
+      "menu": "Nasi Udang",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "10",
+      "menu": "Nasi Cumi",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "11",
+      "menu": "Nasi Kuah Asam",
+      "Harga": "13000.00"
+    }],
+  "status" : "OK"
+}
+

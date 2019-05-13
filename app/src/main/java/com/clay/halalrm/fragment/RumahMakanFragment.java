@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.clay.halalrm.R;
 import com.clay.halalrm.fragment.dummy.DummyContent;
 import com.clay.halalrm.fragment.dummy.DummyContent.DummyItem;
+import com.clay.halalrm.model.RumahMakan;
 
 import java.util.List;
 
@@ -70,7 +71,8 @@ public class RumahMakanFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new RumahMakanAdapter(DummyContent.ITEMS, mListener));
+            List<RumahMakan> rumahMakans = RumahMakan.listAll(RumahMakan.class);
+            recyclerView.setAdapter(new RumahMakanAdapter(rumahMakans, mListener));
         }
         return view;
     }
@@ -105,6 +107,6 @@ public class RumahMakanFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(RumahMakan item);
     }
 }

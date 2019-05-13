@@ -1,0 +1,538 @@
+{
+   "html_attributions" : [],
+   "results" : [
+      {
+         "formatted_address" : "Jl. Herewilla No.23, Naikoten II, Kec. Kota Raja, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.1753701,
+               "lng" : 123.5966858
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.17408442010728,
+                  "lng" : 123.5981393298927
+               },
+               "southwest" : {
+                  "lat" : -10.17678407989272,
+                  "lng" : 123.5954396701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "f718201e27107c2f16d9c0c2db9769dc5fedba6b",
+         "name" : "Rumah Makan Persada",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 2160,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/104129908216853385746/photos\"\u003eIndo Rihan\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAXrWLQLHyZ3UP3kR3mEEFpRCm43p3F8oOeyVqN1ocuxFa9dopZ9feDUqxxAS1ogiKwf6ELxw3zYxSo6ip2aWtiLyOs3A0bLDpkOR8AoM9JoQcnAnc55YdWpYaCdyYL9fHEhBEyJNlAl5xxxU8ptwPouhhGhScUEuRFE-OQ-95g30Z-xW9UHzFEg",
+               "width" : 2160
+            }
+         ],
+         "place_id" : "ChIJ5zW0oqGcViwRfbEG9N2k61E",
+         "plus_code" : {
+            "compound_code" : "RHFW+VM Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RHFW+VM"
+         },
+         "rating" : 4.3,
+         "reference" : "PadangPersada.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 38
+      },
+      {
+         "formatted_address" : "Jl. Cak Doko No.9, Oebobo, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.1669901,
+               "lng" : 123.5972566
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.16572447010728,
+                  "lng" : 123.5985479298927
+               },
+               "southwest" : {
+                  "lat" : -10.16842412989272,
+                  "lng" : 123.5958482701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "a99a9db29fa2ab6b6a950be12616680c63b004d5",
+         "name" : "Rumah Makan Sederhana - Masakan Padang",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 1920,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/111693322889875257434/photos\"\u003eRendy Bj\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAYtNMkAj0CtNNmdh9ncqnGoFA-Dzri3t0I2PZeb278ZvCpFf8-RO7uGCQScwiDZSZt5cnkn_mJDQWK9LahB83TwyJvha__GXDj8gTYxanZmAaH-3iRxxsOAviiGNyy5piEhC0NvSdFXO0__N7N_hbS-jIGhSp8rNKfWu1oBuzlHSOq53C8VGwSA",
+               "width" : 1080
+            }
+         ],
+         "place_id" : "ChIJLxuNF72cViwRIdFapAWHIbE",
+         "plus_code" : {
+            "compound_code" : "RHMW+6W Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RHMW+6W"
+         },
+         "rating" : 3.9,
+         "reference" : "PadangPadang2.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 149
+      },
+      {
+         "formatted_address" : "Jl. Timor Raya No.1B, Klp. Lima, Kota Kupang, Nusa Tenggara Tim. 85228, Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.145299,
+               "lng" : 123.615191
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.14412487010728,
+                  "lng" : 123.6165909298927
+               },
+               "southwest" : {
+                  "lat" : -10.14682452989272,
+                  "lng" : 123.6138912701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "3ebd77be48e160aa08153e154dd0f04019cdf9e4",
+         "name" : "RM Bundo Kanduang",
+         "opening_hours" : {
+            "open_now" : true
+         },
+         "photos" : [
+            {
+               "height" : 1920,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/109593316882427941074/photos\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAFezR7J7QRYNeK-GmfT3bx50c3menP9wyp0Ap-LRJgRPyoTeb9Os8dtXE8pQlWr9UJvmVpmI6oGgYXPcjSRULrktq0xgGxjQSd7EKBm8yFixeXmS_64zXeQlRE2z8AOM6EhC6OtMnOmitnZyp1SzHAoFbGhQOx7CFJyrUnr02bQU9ZFWmYeYy0g",
+               "width" : 1080
+            }
+         ],
+         "place_id" : "ChIJH6Gm89KcViwRqsiJYKbbm_0",
+         "plus_code" : {
+            "compound_code" : "VJ38+V3 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5VJ38+V3"
+         },
+         "rating" : 4.1,
+         "reference" : "PadangBundoKanduang.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 89
+      },
+      {
+         "formatted_address" : "Jl. Frans Seda, Oesapa Bar., Klp. Lima, Kota Kupang, Nusa Tenggara Tim. 85000, Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.155912,
+               "lng" : 123.630829
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.15462482010728,
+                  "lng" : 123.6321831798927
+               },
+               "southwest" : {
+                  "lat" : -10.15732447989272,
+                  "lng" : 123.6294835201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "5152f23af12ab667258b01db6d529a955abf1a52",
+         "name" : "Rumah Makan Padang 2",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "photos" : [
+            {
+               "height" : 4160,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/112961297872701513429/photos\"\u003eM. Hafizal Rachman\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAA6WkXGgjxXObsxxgjtEVSV6AgSUzTgKAOxopw0fwKR-iDKuYdXXbo0fSDwHfFIjBwwCt9uQ15_4u4Skp3ANMg7vGgClknE3s4InRDdi-UGFEvH-BJgp4sB9lym1hwP5VTEhBEagaclcoJCGpnnxzp8D6FGhS5yDnOMvqOcR7v7DreWuHKg7TBPA",
+               "width" : 3120
+            }
+         ],
+         "place_id" : "ChIJ-07wl0eDViwRqKrWv65CCvI",
+         "plus_code" : {
+            "compound_code" : "RJVJ+J8 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RJVJ+J8"
+         },
+         "rating" : 4.1,
+         "reference" : "PadangPadang2.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 230
+      },
+      {
+         "formatted_address" : "Jl. Yos Sudarso, Alak, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.1943935,
+               "lng" : 123.5325186
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.19304607010728,
+                  "lng" : 123.5339749798927
+               },
+               "southwest" : {
+                  "lat" : -10.19574572989272,
+                  "lng" : 123.5312753201073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "fe4c52c57b6e011713f5a43ea3a05887afafe361",
+         "name" : "Rumah Makan Simpang Raya 2",
+         "opening_hours" : {
+            "open_now" : false
+         },
+         "place_id" : "ChIJObTyufybViwRcWeOJNexukg",
+         "plus_code" : {
+            "compound_code" : "RG4M+62 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RG4M+62"
+         },
+         "rating" : 3.2,
+         "reference" : "PadangSimpangRaya.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 5
+      },
+      {
+         "formatted_address" : "Jl. Timor Raya No.62, Bakunase, Kec. Kota Raja, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.1833333,
+               "lng" : 123.5833333
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.18201382010728,
+                  "lng" : 123.5847053298927
+               },
+               "southwest" : {
+                  "lat" : -10.18471347989272,
+                  "lng" : 123.5820056701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "a624864eac542f5244b3cad6b7b7537311a7fc59",
+         "name" : "Simpang Raya Rumah Makan",
+         "place_id" : "ChIJT4R5t3ybViwRiUrwNXDPHuw",
+         "plus_code" : {
+            "compound_code" : "RH8M+M8 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RH8M+M8"
+         },
+         "rating" : 0,
+         "reference" : "PadangSimpangRaya.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 0
+      },
+      {
+         "formatted_address" : "Jl. Urip Sumohardjo, Merdeka, Kec. Kota Lama, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.1613278,
+               "lng" : 123.5841786
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.16002942010728,
+                  "lng" : 123.5855467298927
+               },
+               "southwest" : {
+                  "lat" : -10.16272907989272,
+                  "lng" : 123.5828470701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "b245e76ff6ba1a532bc332d5e5384fc39bf1e8e9",
+         "name" : "RM. TELUK BAYUR",
+         "photos" : [
+            {
+               "height" : 4128,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/107024396242130790258/photos\"\u003eA Google User\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAABUqliIQbTm9EMzcefRgjT5aH-90ZXWqOZHzfZts1H4R7ry-H5MO4E5WxkdzRSZtj382FHT4RQC7jZt_rpK3Uae-xzgizvSXLOTvekz5PKIS9yUU2p6JIBGozIvP03q91EhC-AOnQVGvuBtBFKog5hHJZGhSgqrMKjkyNkj5S966_qK3doLU8Tw",
+               "width" : 2322
+            }
+         ],
+         "place_id" : "ChIJT5lRn5KcViwRaOcbde7CvXI",
+         "plus_code" : {
+            "compound_code" : "RHQM+FM Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RHQM+FM"
+         },
+         "rating" : 3.9,
+         "reference" : "PadangTelukBayur.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 10
+      },
+      {
+         "formatted_address" : "Kuanino, Raja City, Kupang City, East Nusa Tenggara, Indonesia",
+         "geometry" : {
+            "location" : {
+               "lat" : -10.1754213,
+               "lng" : 123.5935972
+            },
+            "viewport" : {
+               "northeast" : {
+                  "lat" : -10.17407567010728,
+                  "lng" : 123.5949432298927
+               },
+               "southwest" : {
+                  "lat" : -10.17677532989272,
+                  "lng" : 123.5922435701073
+               }
+            }
+         },
+         "icon" : "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+         "id" : "3b056a11d84c5342afb3c0ab69c511441faeaf52",
+         "name" : "Sari Bundo",
+         "photos" : [
+            {
+               "height" : 1840,
+               "html_attributions" : [
+                  "\u003ca href=\"https://maps.google.com/maps/contrib/100449188850028728385/photos\"\u003eirul ajje\u003c/a\u003e"
+               ],
+               "photo_reference" : "CmRaAAAAwh_G1otoHDXMj2mAaJ8z8Q2cTdsOEUQMX5QkS3Kgq1f2CzwbWANhVObf0cSXud3Y7z4LwTPwbWP7cbbQajf9v7s550m3uzGTF9pqB_yXPLlXI7K-VfNUmjBApALsbgSIEhAVH4tjxb2GOAAjcKgPEH-4GhR_nXHUrLltWl0VQAnSg39CwF6cqw",
+               "width" : 3264
+            }
+         ],
+         "place_id" : "ChIJLYqhDZ-cViwRtLCWsR6-TV0",
+         "plus_code" : {
+            "compound_code" : "RHFV+RC Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RHFV+RC"
+         },
+         "rating" : 3.8,
+         "reference" : "PadangBundoKanduang.json",
+         "types" : [ "restaurant", "point_of_interest", "food", "establishment" ],
+         "user_ratings_total" : 25
+      },
+      {
+         "formatted_address": "Mata Air, Central Kupang, Kupang, East Nusa Tenggara, Indonesia",
+         "geometry": {
+            "location": {
+               "lat": -10.1265085,
+               "lng": 123.6874944
+            },
+            "viewport": {
+               "northeast": {
+                  "lat": -10.109357,
+                  "lng": 123.70718
+               },
+               "southwest": {
+                  "lat": -10.1538038,
+                  "lng": 123.677173
+               }
+            }
+         },
+         "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
+         "id": "a144e15aa1c82aa2e27565ce148a0dfc790c2ca6",
+         "name": "Mata Air",
+         "photos": [
+            {
+               "height": 2592,
+               "html_attributions": [
+                  "<a href=\"https://maps.google.com/maps/contrib/109424859761757931767/photos\">A Google User</a>"
+               ],
+               "photo_reference": "CmRaAAAAXQ77VK-yydoVDsO-7KI0DK8yI0CnkcATWSd4aqQ-yh_5KzrmYtjVP0bMG3MYzWRxBBwmJa_5M_w7U4erWu6_QM5-w2wLw62Ps_sbaDflg2LDJJw3JRuLXCF0ZSSqr1GQEhBIAgqJbz3skdf8jTL4Wg0BGhR4q3_FCRULVjXbFwcvKCue_3UAcA",
+               "width": 4608
+            }
+         ],
+         "place_id": "ChIJe9dPRMyDViwRkv_fsdV1rGo",
+          "plus_code" : {
+            "compound_code" : "RHFV+RC Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+            "global_code" : "5QX5RHFV+RC"
+          },
+         "reference": "PadangPadang2.json",
+         "types": [
+            "administrative_area_level_4",
+            "political"
+         ]
+      },
+     {
+       "formatted_address": "Jl. Percetakan Cendana No.6, Fontein, Kec. Kota Raja, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+       "geometry": {
+         "location": {
+           "lat": -10.164046,
+           "lng": 123.578037
+         },
+         "viewport": {
+           "northeast": {
+             "lat": -10.16266242010728,
+             "lng": 123.5794331298927
+           },
+           "southwest": {
+             "lat": -10.16536207989272,
+             "lng": 123.5767334701073
+           }
+         }
+       },
+       "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+       "id": "23cd3e78a1aa4ceba67b912f2f9a16ad33147215",
+       "name": "Warung Makan Padang Puti Bungsu",
+       "permanently_closed": true,
+       "photos": [
+         {
+           "height": 2327,
+           "html_attributions": [
+             "<a href=\"https://maps.google.com/maps/contrib/109241321857484215770/photos\">Nur meini A.Yasin Ahmad</a>"
+           ],
+           "photo_reference": "CmRaAAAAGGuZG09jXJMLqH5_gRKXZKCW3LOcrDORwMFj9hfQuf6WoxpjGIjS3YPPCOD0uH8X_qGC2UeIjDnxvdSUsJBR8MzWC_YeihNGXDRvYubrY4WKPyY80rhSKbUCZ_R37_CaEhDHXD2cXYHsEzQmhbGp-AleGhQBLWlyzbtxONTydEaVOBmj2uuMsw",
+           "width": 2560
+         }
+       ],
+       "place_id": "ChIJU3fSjoucViwRKmHtkELE5Dw",
+       "plus_code": {
+         "compound_code": "RHPH+96 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+         "global_code": "5QX5RHPH+96"
+       },
+       "rating": 3.4,
+       "reference": "PadangPutiBungsu.json",
+       "types": [
+         "restaurant",
+         "point_of_interest",
+         "food",
+         "establishment"
+       ],
+       "user_ratings_total": 25
+     },
+     {
+       "formatted_address": "Jl. Moch Hatta No.19, Oetete, Oebobo, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+       "geometry": {
+         "location": {
+           "lat": -10.1689972,
+           "lng": 123.5855417
+         },
+         "viewport": {
+           "northeast": {
+             "lat": -10.16765412010728,
+             "lng": 123.5868853798927
+           },
+           "southwest": {
+             "lat": -10.17035377989272,
+             "lng": 123.5841857201073
+           }
+         }
+       },
+       "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+       "id": "c0b71d3b93f5b0d855fc7778ccff25a712da94a4",
+       "name": "RM Putra Bungsu",
+       "opening_hours": {
+         "open_now": true
+       },
+       "photos": [
+         {
+           "height": 4160,
+           "html_attributions": [
+             "<a href=\"https://maps.google.com/maps/contrib/113894491985221453035/photos\">Febri Naldi</a>"
+           ],
+           "photo_reference": "CmRaAAAA3i2z_pdD1YVPFS31TFhKigTux3yOFMgTwG6F7UDQ714KspLx4t0ue-LsUvao0bVH_GZqVdTWqqen-9qyD_J1J1DFH_tYE-EqQgGZlwL5UGTTujXeP9uXobal9TvP_drqEhBeMfcwBe53hGcnI5W6GLujGhQf1O-pHtv_j006a6DvhwW8dUsnEg",
+           "width": 3120
+         }
+       ],
+       "place_id": "ChIJe1p6bZCcViwRyqvNewhEItw",
+       "plus_code": {
+         "compound_code": "RHJP+C6 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+         "global_code": "5QX5RHJP+C6"
+       },
+       "rating": 3.8,
+       "reference": "PadangPutraBungsu.json",
+       "types": [
+         "restaurant",
+         "point_of_interest",
+         "food",
+         "establishment"
+       ],
+       "user_ratings_total": 68
+     },
+     {
+       "formatted_address": "Jl. L. Lake No.8, Aplasi, Kota Kefamenanu, Kabupaten Timor Tengah Utara, Nusa Tenggara Tim., Indonesia",
+       "geometry": {
+         "location": {
+           "lat": -9.428740999999999,
+           "lng": 124.510574
+         },
+         "viewport": {
+           "northeast": {
+             "lat": -9.427100020107277,
+             "lng": 124.513187
+           },
+           "southwest": {
+             "lat": -9.429799679892721,
+             "lng": 124.509703
+           }
+         }
+       },
+       "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+       "id": "3bc7ddc17c2fa96d74148ec5fd3b02369f0d6587",
+       "name": "Minang Jaya Rumah Makan",
+       "place_id": "ChIJa-r7Jyp-_ywRh1C_cMkQTMw",
+       "plus_code": {
+         "compound_code": "HGC6+G6 Kefamenanu, Kefamenanu Tengah, North Timor Tengah Regency, East Nusa Tenggara, Indonesia",
+         "global_code": "6Q26HGC6+G6"
+       },
+       "rating": 0,
+       "reference": "PadangMinangJaya.json",
+       "types": [
+         "restaurant",
+         "point_of_interest",
+         "food",
+         "establishment"
+       ],
+       "user_ratings_total": 0
+     },
+     {
+       "formatted_address": "Jl. Samratulangi No.9C, Oesapa Bar., Klp. Lima, Kota Kupang, Nusa Tenggara Tim. 85228, Indonesia",
+       "geometry": {
+         "location": {
+           "lat": -10.15074,
+           "lng": 123.630992
+         },
+         "viewport": {
+           "northeast": {
+             "lat": -10.14963012010728,
+             "lng": 123.6323268298927
+           },
+           "southwest": {
+             "lat": -10.15232977989272,
+             "lng": 123.6296271701073
+           }
+         }
+       },
+       "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+       "id": "1690d5573b01fdab37d53b0c8b6921c3bf3e7024",
+       "name": "RM Bundo Kanduang 2",
+       "place_id": "ChIJlRM4mjmDViwR0gYOrpDnsOY",
+       "plus_code": {
+         "compound_code": "RJXJ+P9 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+         "global_code": "5QX5RJXJ+P9"
+       },
+       "rating": 0,
+       "reference": "PadangBundoKanduang.json",
+       "types": [
+         "restaurant",
+         "point_of_interest",
+         "food",
+         "establishment"
+       ],
+       "user_ratings_total": 0
+     }   ],
+   "status" : "OK"
+}

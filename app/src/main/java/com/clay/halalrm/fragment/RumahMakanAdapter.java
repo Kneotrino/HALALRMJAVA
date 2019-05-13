@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.clay.halalrm.R;
 import com.clay.halalrm.fragment.RumahMakanFragment.OnListFragmentInteractionListener;
 import com.clay.halalrm.fragment.dummy.DummyContent.DummyItem;
+import com.clay.halalrm.model.RumahMakan;
 
 import java.util.List;
 
@@ -19,10 +20,10 @@ import java.util.List;
  */
 public class RumahMakanAdapter extends RecyclerView.Adapter<RumahMakanAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<RumahMakan> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public RumahMakanAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public RumahMakanAdapter(List<RumahMakan> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -37,8 +38,8 @@ public class RumahMakanAdapter extends RecyclerView.Adapter<RumahMakanAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getId().toString());
+        holder.mContentView.setText(mValues.get(position).getName());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class RumahMakanAdapter extends RecyclerView.Adapter<RumahMakanAdapter.Vi
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public RumahMakan mItem;
 
         public ViewHolder(View view) {
             super(view);

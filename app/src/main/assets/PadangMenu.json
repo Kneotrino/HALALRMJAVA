@@ -1,0 +1,219 @@
+{
+  "results": [	{
+    "id": "1",
+    "menu": "Nasi Ayam Goreng",
+    "Harga": "24000"
+  },
+    {
+      "id": "2",
+      "menu": "Nasi Ayam Bakar",
+      "Harga": "24000"
+    },
+    {
+      "id": "3",
+      "menu": "Nasi Ayam Gule",
+      "Harga": "24000"
+    },
+    {
+      "id": "4",
+      "menu": "Nasi Ayam Pop",
+      "Harga": "25000"
+    },
+    {
+      "id": "5",
+      "menu": "Nasi Ikan Goreng",
+      "Harga": "19000"
+    },
+    {
+      "id": "6",
+      "menu": "Nasi Ikan Gule",
+      "Harga": "19000"
+    },
+    {
+      "id": "7",
+      "menu": "Nasi Kepala Kakap",
+      "Harga": "30000"
+    },
+    {
+      "id": "8",
+      "menu": "Nasi Kikil",
+      "Harga": "21000"
+    },
+    {
+      "id": "9",
+      "menu": "Nasi Rendang",
+      "Harga": "21000"
+    },
+    {
+      "id": "10",
+      "menu": "Nasi Hati",
+      "Harga": "19000"
+    },
+    {
+      "id": "11",
+      "menu": "Nasi Limpa",
+      "Harga": "19000"
+    },
+    {
+      "id": "12",
+      "menu": "Nasi Paru",
+      "Harga": "19000"
+    },
+    {
+      "id": "13",
+      "menu": "Nasi Dendeng Gr.",
+      "Harga": "24000"
+    },
+    {
+      "id": "14",
+      "menu": "Nasi Dendeng Br.",
+      "Harga": "25000"
+    },
+    {
+      "id": "15",
+      "menu": "Nasi Telur Dadar",
+      "Harga": "15000"
+    },
+    {
+      "id": "16",
+      "menu": "Nasi Telur Bulat",
+      "Harga": "13000"
+    },
+    {
+      "id": "17",
+      "menu": "Nasi Perkedel ",
+      "Harga": "14000"
+    },
+    {
+      "id": "18",
+      "menu": "Nasi Sop",
+      "Harga": "35000"
+    },
+    {
+      "id": "19",
+      "menu": "Nasi Cincang",
+      "Harga": "25000"
+    },
+    {
+      "id": "20",
+      "menu": "Nasi Otak",
+      "Harga": "19000"
+    },
+    {
+      "id": "21",
+      "menu": "Nasi Putih",
+      "Harga": "10000"
+    },
+    {
+      "id": "22",
+      "menu": "Ayam Goeng",
+      "Harga": "18000"
+    },
+    {
+      "id": "23",
+      "menu": "Ayam Bakar",
+      "Harga": "18000"
+    },
+    {
+      "id": "24",
+      "menu": "Ayam Gule",
+      "Harga": "18000"
+    },
+    {
+      "id": "25",
+      "menu": "Ayam Pop ",
+      "Harga": "19000"
+    },
+    {
+      "id": "26",
+      "menu": "Ikan Goreng",
+      "Harga": "14000"
+    },
+    {
+      "id": "27",
+      "menu": "Ikan Gule",
+      "Harga": "14000"
+    },
+    {
+      "id": "28",
+      "menu": "Kepala Kakap",
+      "Harga": "25000"
+    },
+    {
+      "id": "29",
+      "menu": "Kikil",
+      "Harga": "16000"
+    },
+    {
+      "id": "30",
+      "menu": "Rendang",
+      "Harga": "16000"
+    },
+    {
+      "id": "31",
+      "menu": "Es Buah",
+      "Harga": "15000"
+    },
+    {
+      "id": "32",
+      "menu": "Es Campur",
+      "Harga": "15000"
+    },
+    {
+      "id": "33",
+      "menu": "Susu Soda",
+      "Harga": "17000"
+    },
+    {
+      "id": "34",
+      "menu": "Jus Alfukat",
+      "Harga": "15000"
+    },
+    {
+      "id": "35",
+      "menu": "Jus Sirsak",
+      "Harga": "15000"
+    },
+    {
+      "id": "36",
+      "menu": "Jus Melon",
+      "Harga": "15000"
+    },
+    {
+      "id": "37",
+      "menu": "Jus Tomat",
+      "Harga": "15000"
+    },
+    {
+      "id": "38",
+      "menu": "Jus Wortel",
+      "Harga": "15000"
+    },
+    {
+      "id": "39",
+      "menu": "Jus Nanas",
+      "Harga": "15000"
+    },
+    {
+      "id": "40",
+      "menu": "Jus Jeruk",
+      "Harga": "15000"
+    },
+    {
+      "id": "41",
+      "menu": "Jus Apel",
+      "Harga": "15000"
+    },
+    {
+      "id": "42",
+      "menu": "Jus Buah Naga",
+      "Harga": "18000"
+    },
+    {
+      "id": "43",
+      "menu": "Jus Fear",
+      "Harga": "15000"
+    }],
+  "status" : "OK"
+}
+

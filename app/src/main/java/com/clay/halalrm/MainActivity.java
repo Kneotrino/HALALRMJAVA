@@ -28,10 +28,19 @@ import android.widget.TextView;
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
 import com.clay.halalrm.fragment.dummy.DummyContent;
+import com.clay.halalrm.model.DaftarMenu;
+import com.clay.halalrm.model.RumahMakan;
+import com.clay.informhalal.dataMenu;
+import com.clay.informhalal.googlePlace;
+import com.google.gson.Gson;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -53,6 +62,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SugarContext.init(this);
+
         if(SessionHelper.getInstance(this).getAppFirstTime()){
             Log.d("MainApp","First session");
             SugarDb db = new SugarDb(this);
@@ -62,14 +73,14 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             Log.d("MainApp","Not First session");
+            InputData();
         }
 
-        SugarContext.init(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,25 +89,72 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        navUserMain = (TextView) headerView.findViewById(R.id.txtMain);
-        navUserSub = (TextView) headerView.findViewById(R.id.txtSub);
+        navUserMain = headerView.findViewById(R.id.txtMain);
+        navUserSub = headerView.findViewById(R.id.txtSub);
 
         UserView();
     }
 
     private void InputData() {
-        
+
+        List<String> DATA_ALL = new LinkedList<>();
+        DATA_ALL.add("RMjawa.json");
+        DATA_ALL.add("RMmadura.json");
+        DATA_ALL.add("RMpadang.json");
+
+        for (String s: DATA_ALL) {
+            SiapkanData(s);
+        }
     }
+
+    private void SiapkanData(String s) {
+        String padangData = MyUtils.loadJSONFromAsset(this, s);
+        Gson gson = new Gson();
+        googlePlace DataPadang = gson.fromJson(padangData, googlePlace.class);
+        List<googlePlace.Result> resultsPadang = DataPadang.getResults();
+        System.out.println("s = " + s);
+        System.out.println("RM data size = " + resultsPadang.size());
+        for (googlePlace.Result result: resultsPadang ) {
+            RumahMakan RM = new RumahMakan();
+            RM.setName(result.getName());
+            RM.setReference(result.getReference());
+            System.out.println("RM = " + RM);
+
+
+            System.out.println("result = " + result.getPlus_code());
+            RM.setCompound_code(result.getPlus_code().getCompound_code());
+            RM.setGlobal_code(result.getPlus_code().getGlobal_code());
+            RM.setFormatted_address(result.getFormatted_address());
+            RM.setRating(result.getRating());
+            RM.setPlace_id(result.getPlace_id());
+            RM.setUser_ratings_total(result.getUser_ratings_total());
+            RM.setLat(result.getGeometry().getLocation().getLat());
+            RM.setLng(result.getGeometry().getLocation().getLng());
+
+
+            String DaftarMenu = MyUtils.loadJSONFromAsset(this, RM.getReference());
+            dataMenu dataMenu = gson.fromJson(DaftarMenu, dataMenu.class);
+            List<com.clay.informhalal.dataMenu.Result> results = dataMenu.getResults();
+            RM.save();
+            for (com.clay.informhalal.dataMenu.Result r: results) {
+                com.clay.halalrm.model.DaftarMenu daftarMenu =
+                        new DaftarMenu(r.getMenu(),r.getHarga(),RM.getId());
+                daftarMenu.save();
+            }
+        }
+
+    }
+
 
     private void UserView() {
         hideFloatingActionButton(fab);
@@ -110,7 +168,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -146,13 +204,13 @@ public class MainActivity extends AppCompatActivity
                     .setNegativeButton("Batal", null)
                     .create();
 
-            final EditText txtPassword = (EditText) prompt.findViewById(R.id.txtPassword);
-            final EditText txtUsername = (EditText) prompt.findViewById(R.id.txtUsername);
+            final EditText txtPassword = prompt.findViewById(R.id.txtPassword);
+            final EditText txtUsername = prompt.findViewById(R.id.txtUsername);
 
             dialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialogInterface) {
-                    Button btnLogin = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
+                    Button btnLogin = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
                     btnLogin .setOnClickListener(new View.OnClickListener() {
 
                         @Override
@@ -237,7 +295,7 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -286,8 +344,14 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(RumahMakan item) {
         System.out.println("item = " + item);
+
+        List<DaftarMenu> list = Select.from(DaftarMenu.class)
+                .where(
+                        Condition.prop("Rumah_Makan_ID").eq(item.getId())
+                ).list();
+        System.out.println("list.size() = " + list.size());
     }
 
     @Override

@@ -1,0 +1,99 @@
+{
+  "results": [{
+    "id": "1",
+    "menu": "Nasi Cumi",
+    "Harga": "20000.00"
+  },
+    {
+      "id": "2",
+      "menu": "Nasi Hati",
+      "Harga": "15000.00"
+    },
+    {
+      "id": "3",
+      "menu": "Nasi Telur Asin",
+      "Harga": "10000.00"
+    },
+    {
+      "id": "4",
+      "menu": "Nasi Telur Asin",
+      "Harga": "10000.00"
+    },
+    {
+      "id": "5",
+      "menu": "Nasi Babat",
+      "Harga": "15000.00"
+    },
+    {
+      "id": "6",
+      "menu": "Nasi Ayam Tulang",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "7",
+      "menu": "Nasi kuah Asam",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "8",
+      "menu": "Nasi Ayam Lalapan",
+      "Harga": "25000.00"
+    },
+    {
+      "id": "9",
+      "menu": "Nasi Lalapan",
+      "Harga": "18000.00"
+    },
+    {
+      "id": "10",
+      "menu": "Tahu Tempe Penyet",
+      "Harga": "12000.00"
+    },
+    {
+      "id": "11",
+      "menu": "Sate Ayam + Nasi",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "12",
+      "menu": "Sate Kambing + Nasi",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "13",
+      "menu": "Penyet Lele",
+      "Harga": "30000.00"
+    },
+    {
+      "id": "14",
+      "menu": "Nasi Ikan ",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "15",
+      "menu": "Nasi Campur",
+      "Harga": "12000.00"
+    },
+    {
+      "id": "16",
+      "menu": "Nasi Rendang",
+      "Harga": "15000.00"
+    },
+    {
+      "id": "17",
+      "menu": "Nasi Ikan Pepes",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "18",
+      "menu": "Nasi Gule",
+      "Harga": "20000.00"
+    },
+    {
+      "id": "19",
+      "menu": "Nasi Udang",
+      "Harga": "20000.00"
+    }],
+  "status" : "OK"
+}
+

@@ -1,0 +1,104 @@
+{
+  "html_attributions": [],
+  "results": [
+    {
+      "formatted_address": "Oebufu, Oebobo, Kupang City, East Nusa Tenggara, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.1785502,
+          "lng": 123.6166624
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.17722492010728,
+            "lng": 123.6180096298927
+          },
+          "southwest": {
+            "lat": -10.17992457989272,
+            "lng": 123.6153099701073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "637022542a9715f29818eda4f28f8a93375b5704",
+      "name": "Rumah Makan Bebek Madura Ole Olang",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 1080,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102420755135304064314/photos\">Fadli Rahmawan</a>"
+          ],
+          "photo_reference": "CmRaAAAAuw7BKAFPKZGy4WoGpqIoZtevaX8UJXrWPv5K8MrCPpo8Tet_DsJ2UKuRSU3DLkvAQZA4m75c_CobevOAGugpL0VYwQY6LIToZMZegq0Q4MDKg_YgqQ6fuYs9-ToluhFbEhAyD292QZw97T4PWah-ku6kGhQSFgQMbBVS0NFGp6A9LRXpD0vXfw",
+          "width": 1920
+        }
+      ],
+      "place_id": "ChIJiWSo21SbViwRSYlyyyqgNhI",
+      "plus_code": {
+        "compound_code": "RJC8+HM Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJC8+HM"
+      },
+      "rating": 3.9,
+      "reference": "MaduraMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 7
+    },
+    {
+      "formatted_address": "Jl. Timor Raya No.100, Pasir Panjang, Kec. Kota Lama, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.151011,
+          "lng": 123.603303
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.14966472010728,
+            "lng": 123.6046553298927
+          },
+          "southwest": {
+            "lat": -10.15236437989272,
+            "lng": 123.6019556701072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "5e3d6c31f47d2dd728890b4dd368a78ce36c714d",
+      "name": "Warung Jawa Tulen",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 5520,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110894943852207552285/photos\">Adi ATM</a>"
+          ],
+          "photo_reference": "CmRaAAAAiaK2Efz6avFRE_FWw1SUucPu-QpmFm8ur1PyI_GrQVr7c6oPxD-sHR1Z1Ktkyqn2tx-FzP703lXaAqdWrBD93nj4ub3Epu7Am9Mn4kPnWEo6o2I2Cm0S45vSPSMz7X2NEhAb7DulNMbVEw8UJ_JVPVTeGhRtYA3kuZMs5GAMhpnlken1ObnbGQ",
+          "width": 4140
+        }
+      ],
+      "place_id": "ChIJA1jxU8ScViwR3Pp3PMJ7Xb8",
+      "plus_code": {
+        "compound_code": "RJX3+H8 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJX3+H8"
+      },
+      "rating": 4.5,
+      "reference": "MaduraMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 2
+    }
+  ],
+  "status": "OK"
+}

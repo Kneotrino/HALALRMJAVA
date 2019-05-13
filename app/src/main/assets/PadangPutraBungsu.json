@@ -1,0 +1,206 @@
+{
+  "results": [
+    {
+      "Id": 1,
+      "menu": "Nasi Rendang",
+      "Harga": "18,000"
+    },
+    {
+      "Id": 2,
+      "menu": "Nasi Dendeng",
+      "Harga": 0
+    },
+    {
+      "Id": 3,
+      "menu": "Nasi Cincang",
+      "Harga": 0
+    },
+    {
+      "Id": 4,
+      "menu": "Nasi Babat",
+      "Harga": 0
+    },
+    {
+      "Id": 5,
+      "menu": "Nasi Hati",
+      "Harga": "18,000"
+    },
+    {
+      "Id": 6,
+      "menu": "Nasi Kikil",
+      "Harga": "18,000"
+    },
+    {
+      "Id": 7,
+      "menu": "Nasi Otak",
+      "Harga": 0
+    },
+    {
+      "Id": 8,
+      "menu": "Nasi Limpa",
+      "Harga": "18,000"
+    },
+    {
+      "Id": 9,
+      "menu": "Nasi Hati Limpa",
+      "Harga": 0
+    },
+    {
+      "Id": 10,
+      "menu": "Nasi Usus",
+      "Harga": 0
+    },
+    {
+      "Id": 11,
+      "menu": "Nasi Paru",
+      "Harga": "18,000"
+    },
+    {
+      "Id": 12,
+      "menu": "Nasi Gule",
+      "Harga": 0
+    },
+    {
+      "Id": 13,
+      "menu": "Nasi Ayam Goreng",
+      "Harga": "23,000"
+    },
+    {
+      "Id": 14,
+      "menu": "Nasi Ayam Gule",
+      "Harga": "23,000"
+    },
+    {
+      "Id": 15,
+      "menu": "Nasi Ayam Bakar",
+      "Harga": 0
+    },
+    {
+      "Id": 16,
+      "menu": "Nasi Ayam PoP",
+      "Harga": 0
+    },
+    {
+      "Id": 17,
+      "menu": "Nasi Ayam Lalapan",
+      "Harga": 0
+    },
+    {
+      "Id": 18,
+      "menu": "Nasi Sup",
+      "Harga": 0
+    },
+    {
+      "Id": 19,
+      "menu": "Nasi Hati Ayam Goreng",
+      "Harga": 0
+    },
+    {
+      "Id": 20,
+      "menu": "Nasi Hati Ayam Gule",
+      "Harga": 0
+    },
+    {
+      "Id": 21,
+      "menu": "Nasi Hati Sapi",
+      "Harga": 0
+    },
+    {
+      "Id": 22,
+      "menu": "Nasi Ikan Goreng",
+      "Harga": "16,000"
+    },
+    {
+      "Id": 23,
+      "menu": "Nasi Ikan Gule",
+      "Harga": "16,000"
+    },
+    {
+      "Id": 24,
+      "menu": "Nasi Ikan Bakar",
+      "Harga": 0
+    },
+    {
+      "Id": 25,
+      "menu": "Nasi Ikan Bakar Kombong",
+      "Harga": 0
+    },
+    {
+      "Id": 26,
+      "menu": "Nasi Ikan Bakar Kakap",
+      "Harga": 0
+    },
+    {
+      "Id": 27,
+      "menu": "Nasi Kepala Ikan",
+      "Harga": "20,000"
+    },
+    {
+      "Id": 28,
+      "menu": "Nasi Telur Dadar",
+      "Harga": "16,000"
+    },
+    {
+      "Id": 29,
+      "menu": "Nasi Telur Bulat",
+      "Harga": "13,000"
+    },
+    {
+      "Id": 30,
+      "menu": "Nasi Telur Mata Sapi",
+      "Harga": 0
+    },
+    {
+      "Id": 31,
+      "menu": "Nasi Perkedel",
+      "Harga": "16,000"
+    },
+    {
+      "Id": 32,
+      "menu": "Nasi Tempe/Tahu",
+      "Harga": "18,000"
+    },
+    {
+      "Id": 33,
+      "menu": "Nasi udang",
+      "Harga": "25,000"
+    },
+    {
+      "Id": 34,
+      "menu": "Nasi Cumi",
+      "Harga": 0
+    },
+    {
+      "Id": 35,
+      "menu": "Nasi Asam Pedes",
+      "Harga": 0
+    },
+    {
+      "Id": 36,
+      "menu": "Nasi Opor Ayam",
+      "Harga": 0
+    },
+    {
+      "Id": 37,
+      "menu": "Sate Padang",
+      "Harga": 0
+    },
+    {
+      "Id": 38,
+      "menu": "Gado-Gado",
+      "Harga": 0
+    },
+    {
+      "Id": 39,
+      "menu": "Bakso",
+      "Harga": 0
+    },
+    {
+      "Id": 40,
+      "menu": "Mie ayam",
+      "Harga": 0
+    }
+  ],
+  "status" : "OK"
+}
+

@@ -1,0 +1,459 @@
+{
+  "html_attributions": [],
+  "results": [
+    {
+      "formatted_address": "Fatululi, Oebobo, Kupang City, East Nusa Tenggara, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.1694084,
+          "lng": 123.6065565
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.16810077010728,
+            "lng": 123.6078593798928
+          },
+          "southwest": {
+            "lat": -10.17080042989272,
+            "lng": 123.6051597201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "d8039cf887421a8b3fe04639be4ae2629673a40b",
+      "name": "Warung Makan Jawa Indah",
+      "opening_hours": {
+        "open_now": false
+      },
+      "photos": [
+        {
+          "height": 4096,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102485238363891398086/photos\">Richard Adoe</a>"
+          ],
+          "photo_reference": "CmRaAAAAJhLsF088PsXAgP6lFCwl63AeIIRXDy7aqQ-SC_A7a23RtOPj2ACD-eOAxh54GiNGVUJ3XYquJ7Yp2v1i3oSS8IVG3DdfyY0Cbkr-ylnaMkjhTZ6qEQV-grbUGmCFyOg3EhBjSRudPkdZaoLLE88iqpqJGhSbfoQEXC3DZ165Gz-jaXUNJ4d_kg",
+          "width": 2304
+        }
+      ],
+      "place_id": "ChIJJQiCd6-cViwRPKF5YwX3qn4",
+      "plus_code": {
+        "compound_code": "RJJ4+6J Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJJ4+6J"
+      },
+      "rating": 3.7,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 19
+    },
+    {
+      "formatted_address": "Oebobo, Kupang City, East Nusa Tenggara, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.170409,
+          "lng": 123.6070983
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.16907537010728,
+            "lng": 123.6084867298927
+          },
+          "southwest": {
+            "lat": -10.17177502989272,
+            "lng": 123.6057870701073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "20b945101089e42f6b34c858cc49b55540bcdc93",
+      "name": "Sari Laut Brilliants",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 720,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/117740224478515891231/photos\">Kader Revolusi</a>"
+          ],
+          "photo_reference": "CmRaAAAAtHLeWubBowmmXq-NQ0evZbhpHVpWbtqEEaUzUN4ej9acJrMLlJGwoqWlIZp_n5zzPafPJl9wP_YAZ8ixg_ar-F0yA9WFG92HK2kjI123ioNyucz43w14WrC-74RbamNYEhCBhPjpz-wC2hMp9tdSgXAEGhSvc3Y7VKY2hr8-0yGy1xRrxzEjjw",
+          "width": 1280
+        }
+      ],
+      "place_id": "ChIJC0guZq-cViwRJnAnfYxVlQU",
+      "plus_code": {
+        "compound_code": "RJH4+RR Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJH4+RR"
+      },
+      "rating": 4.1,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 16
+    },
+    {
+      "formatted_address": "Jl. Sumatera No.21, Todekisar, Kec. Kota Lama, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.157456,
+          "lng": 123.586961
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.15622142010728,
+            "lng": 123.5882603798927
+          },
+          "southwest": {
+            "lat": -10.15892107989272,
+            "lng": 123.5855607201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "2ae002113f4203ea5d674d5a03ae96d90aef1596",
+      "name": "Warung Makan Ayu",
+      "photos": [
+        {
+          "height": 768,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/109458201031326066178/photos\">todekisar kisar</a>"
+          ],
+          "photo_reference": "CmRaAAAAcPHfI5RvaoYAlFz07tNLx0SfjzU601sSI3xVuaeib-sBO4D8VsaiZmWT_bfK0QpEy00Y0dmvbr03tgfqYpZXD-T1hE-kskJRxCiiGMXrafM_s8Q1qk3mcYXuExWpYfCiEhBk1OHaWMhlayUpWrRy1jiBGhSL_b3GWGuTJnQQ4i3mZ5vAgQs19w",
+          "width": 1280
+        }
+      ],
+      "place_id": "ChIJIX6e_-ycViwR92hwE7bLLtM",
+      "plus_code": {
+        "compound_code": "RHVP+2Q Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RHVP+2Q"
+      },
+      "rating": 0,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 0
+    },
+    {
+      "formatted_address": "Jl. Cendrawasih, Bonipoi, Kec. Kota Lama, Kota Kupang, Nusa Tenggara Tim. 85112, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.160297,
+          "lng": 123.579356
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.15898287010728,
+            "lng": 123.5806017798927
+          },
+          "southwest": {
+            "lat": -10.16168252989272,
+            "lng": 123.5779021201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "2bfd89f1ff7df1b539e964173483dbbed6e96b96",
+      "name": "Jawa Indah Rumah Makan",
+      "place_id": "ChIJ0z7qTvOcViwRqpk527_FkPM",
+      "plus_code": {
+        "compound_code": "RHQH+VP Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RHQH+VP"
+      },
+      "rating": 5,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 1
+    },
+    {
+      "formatted_address": "Jl. Timor Raya No.100, Pasir Panjang, Kec. Kota Lama, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.151011,
+          "lng": 123.603303
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.14966472010728,
+            "lng": 123.6046553298927
+          },
+          "southwest": {
+            "lat": -10.15236437989272,
+            "lng": 123.6019556701072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "5e3d6c31f47d2dd728890b4dd368a78ce36c714d",
+      "name": "Warung Jawa Tulen",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 5520,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110894943852207552285/photos\">Adi ATM</a>"
+          ],
+          "photo_reference": "CmRaAAAA38LitO0pyU1t1mQVwIxy6NFogU4FFYO-R9DXVCXYErKwEMPHgYp1xnzlENJCB5IilBQm8nLhSU608NXDAKB_2L_HCqrDchH0WGP6ybNTd83YfHqJfGsnvScidPIHQHLuEhAIw_Cw98ArAeitH8gHd8ckGhRoawoRNngqVCMV8xa3HxlCC3kQiQ",
+          "width": 4140
+        }
+      ],
+      "place_id": "ChIJA1jxU8ScViwR3Pp3PMJ7Xb8",
+      "plus_code": {
+        "compound_code": "RJX3+H8 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJX3+H8"
+      },
+      "rating": 4.5,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 2
+    },
+    {
+      "formatted_address": "Naikolan, Maulafa, Kupang City, East Nusa Tenggara, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.1849693,
+          "lng": 123.6008564
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.18365922010728,
+            "lng": 123.6021727298927
+          },
+          "southwest": {
+            "lat": -10.18635887989272,
+            "lng": 123.5994730701073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "f7c84a321afd3522c7c3cee5e2411dbee1357a2c",
+      "name": "Warung Kurnia",
+      "photos": [
+        {
+          "height": 3120,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/102810889796053709675/photos\">irene baria</a>"
+          ],
+          "photo_reference": "CmRaAAAAmp32nd-dOylPkiC6YryhJ6wWbtRkJltcgHlOdEFZ8rQI_d4xtN2-FxuisOrAhaIScY4Z_UzRLWrJpS9Z9TPWYLJ96E1DBlH0SgCKtmIzagaFnRV5OX9rlXFJiqtTRyCfEhDy4sV2eB2ytc1UukswKe1VGhQjOa8kggmYSOV7EphoYY9yyZ8wrw",
+          "width": 4160
+        }
+      ],
+      "place_id": "ChIJYaw-flubViwRhK-51Jvu4bg",
+      "plus_code": {
+        "compound_code": "RJ82+28 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJ82+28"
+      },
+      "rating": 3.5,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 2
+    },
+    {
+      "formatted_address": "Fatululi, Oebobo, Kupang City, East Nusa Tenggara, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.1669129,
+          "lng": 123.6083254
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.16554407010728,
+            "lng": 123.6096778298927
+          },
+          "southwest": {
+            "lat": -10.16824372989272,
+            "lng": 123.6069781701072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "b85238c59c9909dc7012a9d708dfd13cc17c7408",
+      "name": "Warung Barokah",
+      "opening_hours": {},
+      "photos": [
+        {
+          "height": 3120,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/110848749925783293069/photos\">Al- Jimbrong</a>"
+          ],
+          "photo_reference": "CmRaAAAA_9xml758mVwPTLbZNO5upm076jWCoPGxOo-IJvXfsdHXVpd3Sa1lo4m2j3p1F09dVeGKoQ9r_JNaX75OR8ZQHGdS0W2SMa4FMPn9TZwC-egiKo_z4bsp-UUDKxABF_TdEhDUq7dIxDiw9J83E-1P9xSjGhQIhVveG6u5cLrPIDdvXW8XVbUDJQ",
+          "width": 4208
+        }
+      ],
+      "place_id": "ChIJrxShJ7CcViwRk69PhYR87Jo",
+      "plus_code": {
+        "compound_code": "RJM5+68 Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJM5+68"
+      },
+      "rating": 3.7,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 10
+    },
+    {
+      "formatted_address": "Jl. Herewila No.41, Naikoten II, Naikoten I, Oebobo, Kupang, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.1726889,
+          "lng": 123.5989867
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.17136597010728,
+            "lng": 123.6003708298927
+          },
+          "southwest": {
+            "lat": -10.17406562989272,
+            "lng": 123.5976711701073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "1dcf6d987059690c7ae62260a7693ab21fe23801",
+      "name": "Hana Putra Solo Rumah Makan",
+      "opening_hours": {
+        "open_now": true
+      },
+      "photos": [
+        {
+          "height": 2322,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/113710252855097560382/photos\">fachrizal arifin</a>"
+          ],
+          "photo_reference": "CmRaAAAAuuBYKTIMb9n-w001YDpcjWgM35GoGpx3l_5rt5wl7KwYSnwQjVGZI6E95Q9kXcHzmFcL7Vts6jdJ_eR2-eqmKR8LLcEWFF5jM35kHVk4evSDuhNR207Gj7ApOeYX7AKUEhDffIIBPZZ1qSnmbvzByHMaGhQ0marAgEa0Qtnq-iaElkSLELY26g",
+          "width": 4128
+        }
+      ],
+      "place_id": "ChIJs3f8naacViwRPdYoB8w2HzE",
+      "plus_code": {
+        "compound_code": "RHGX+WH Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RHGX+WH"
+      },
+      "rating": 3.8,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 37
+    },
+    {
+      "formatted_address": "Jl. Piet A. Tallo No.24, Liliba, Oebobo, Kota Kupang, Nusa Tenggara Tim., Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.1574732,
+          "lng": 123.6386934
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.15618042010728,
+            "lng": 123.6400311798927
+          },
+          "southwest": {
+            "lat": -10.15888007989272,
+            "lng": 123.6373315201073
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "81ef9e10f375cf734b3d0da9cc09525849614229",
+      "name": "Warung Mak Yem",
+      "photos": [
+        {
+          "height": 3120,
+          "html_attributions": [
+            "<a href=\"https://maps.google.com/maps/contrib/106512018796951836863/photos\">M. Dio Danarianto</a>"
+          ],
+          "photo_reference": "CmRaAAAA7kiM9k7bzCTekdoY_BUls801mw-ikyMx0fd1IGl22h0mJ-MYXBsaNnuqCn1vNWKpvwcCuVkeCmOYSYFEDU2HkmD4D3hGvkqahbv380sOVHwGox4E8j9t-uhFiAEKptaIEhA-u_-iPjrxliJVmgbFbe03GhTPSYZ4gYuU8LTDed14q7M77lL9RA",
+          "width": 4160
+        }
+      ],
+      "place_id": "ChIJCUpmwEGDViwRAjpS9nmvyug",
+      "plus_code": {
+        "compound_code": "RJVQ+2F Kupang, Kupang City, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5RJVQ+2F"
+      },
+      "rating": 4.8,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 5
+    },
+    {
+      "formatted_address": "Kuimasi, Fatuleu, Kupang, East Nusa Tenggara, Indonesia",
+      "geometry": {
+        "location": {
+          "lat": -10.0646022,
+          "lng": 123.878287
+        },
+        "viewport": {
+          "northeast": {
+            "lat": -10.06323892010728,
+            "lng": 123.8798141798927
+          },
+          "southwest": {
+            "lat": -10.06593857989272,
+            "lng": 123.8771145201072
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+      "id": "ab20a6adcca174d9f01322eb87b4012f4ca0255f",
+      "name": "Rumah Makan Jawa Timur",
+      "place_id": "ChIJ3QFVbPnVVSwR6pn4u7N7DL4",
+      "plus_code": {
+        "compound_code": "WVPH+58 Oemasi, Kuimasi, Kupang, East Nusa Tenggara, Indonesia",
+        "global_code": "5QX5WVPH+58"
+      },
+      "rating": 4.4,
+      "reference": "JawaMenu.json",
+      "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+      ],
+      "user_ratings_total": 5
+    }
+  ],
+  "status": "OK"
+}
