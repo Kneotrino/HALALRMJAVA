@@ -72,16 +72,17 @@ public class MainFragment extends Fragment {
         View inf = inflater.inflate(R.layout.fragment_main, container, false);
         WebView htmlView = inf.findViewById(R.id.htmlView);
         String html = "<html><center><b>  "
-                + "Aplikasi Prediksi Hasil Produksi Tanaman Vanili <br>"
-                + "Dinas Perkebunan Kabupaten Sumba Barat Daya  <br>"
+                + "Aplikasi LOCATION BASED SERVICE (LBS) <br>"
+                + "Untuk Informasi dan Pencarian Lokasi Rumah Makan Halal  <br>"
+                + "Di Kota Kupang Berbasis Android  <br>"
                 + "<table>\n" +
                 "  <tr>\n" +
                 "    <td>No.Regis </td>\n" +
-                "    <td>= 231 14 102</td>\n" +
+                "    <td>= 231 14 047</td>\n" +
                 "  </tr>\n" +
                 "  <tr>\n" +
                 "    <td>Nama</td>\n" +
-                "    <td>= Mikael Ndapa</td>\n" +
+                "    <td>= Nisa Aulia</td>\n" +
                 "  </tr>\n" +
                 "  <tr>\n" +
                 "    <td>Program Studi</td>\n" +

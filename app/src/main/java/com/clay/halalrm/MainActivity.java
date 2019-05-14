@@ -2,6 +2,7 @@ package com.clay.halalrm;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -73,7 +74,6 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             Log.d("MainApp","Not First session");
-            InputData();
         }
 
 
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity
             RM.save();
             for (com.clay.informhalal.dataMenu.Result r: results) {
                 com.clay.halalrm.model.DaftarMenu daftarMenu =
-                        new DaftarMenu(r.getMenu(),r.getHarga(),RM.getId());
+                        new DaftarMenu(r.getHarga(),r.getMenu(),RM.getId());
                 daftarMenu.save();
             }
         }
@@ -301,7 +301,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setViewDataAll() {
-        showFloatingActionButton(fab);
+
+        if (isAdmin())
+        {
+            showFloatingActionButton(fab);
+            fab.setImageResource(android.R.drawable.ic_menu_add);
+
+        }
+        else {
+            hideFloatingActionButton(fab);
+
+        }
+
+
 
     }
 
@@ -347,11 +359,17 @@ public class MainActivity extends AppCompatActivity
     public void onListFragmentInteraction(RumahMakan item) {
         System.out.println("item = " + item);
 
+        Intent myIntent = new Intent(MainActivity.this, RumahMakanActivity.class);
+        myIntent.putExtra("admin",isAdmin());
+        myIntent.putExtra("key", item.getId());
+        startActivity(myIntent);
         List<DaftarMenu> list = Select.from(DaftarMenu.class)
                 .where(
                         Condition.prop("Rumah_Makan_ID").eq(item.getId())
                 ).list();
-        System.out.println("list.size() = " + list.size());
+        System.out.println("MainActivity.list.size() = " + list.size());
+//
+
     }
 
     @Override

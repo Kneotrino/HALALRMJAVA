@@ -40,6 +40,7 @@ public class RumahMakan extends SugarRecord {
     @Override
     public String toString() {
         return "RumahMakan{" +
+                "id='" + getId() + '\'' +
                 "name='" + name + '\'' +
                 ", reference='" + reference + '\'' +
                 '}';
