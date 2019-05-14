@@ -11,14 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.clay.halalrm.R;
-import com.clay.halalrm.fragment.dummy.DummyContent;
-import com.clay.halalrm.fragment.dummy.DummyContent.DummyItem;
+import com.clay.halalrm.fragment.adapter.DaftarMenuAdapter;
 import com.clay.halalrm.model.DaftarMenu;
 import com.orm.query.Condition;
 import com.orm.query.Select;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * A fragment representing a list of Items.

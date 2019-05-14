@@ -1,4 +1,4 @@
-package com.clay.halalrm;
+package com.clay.halalrm.tools;
 
 import android.content.Context;
 

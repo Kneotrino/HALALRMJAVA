@@ -12,13 +12,14 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.clay.halalrm.fragment.DaftarMenuFragment;
+import com.clay.halalrm.fragment.InfoFragment;
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.dummy.DummyContent;
 import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
 
 public class RumahMakanActivity extends AppCompatActivity
-    implements MainFragment.OnFragmentInteractionListener, DaftarMenuFragment.OnListFragmentInteractionListener
+    implements InfoFragment.OnFragmentInteractionListener, DaftarMenuFragment.OnListFragmentInteractionListener
 {
     private TextView mTextMessage;
 
@@ -41,7 +42,7 @@ public class RumahMakanActivity extends AppCompatActivity
 
     private void switchToInfo() {
         FragmentTransaction fragmentTransaction = RumahMakanActivity.this.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.RumahMakanFrame,new MainFragment());
+        fragmentTransaction.replace(R.id.RumahMakanFrame, InfoFragment.newInstance(AdminMode,idRM));
         fragmentTransaction.commit();
     }
 

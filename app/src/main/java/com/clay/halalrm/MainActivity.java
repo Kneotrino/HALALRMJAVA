@@ -28,9 +28,10 @@ import android.widget.TextView;
 
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
-import com.clay.halalrm.fragment.dummy.DummyContent;
 import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
+import com.clay.halalrm.tools.MyUtils;
+import com.clay.halalrm.tools.SessionHelper;
 import com.clay.informhalal.dataMenu;
 import com.clay.informhalal.googlePlace;
 import com.google.gson.Gson;

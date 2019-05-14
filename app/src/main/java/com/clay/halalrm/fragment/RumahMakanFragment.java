@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.clay.halalrm.R;
-import com.clay.halalrm.fragment.dummy.DummyContent;
-import com.clay.halalrm.fragment.dummy.DummyContent.DummyItem;
+import com.clay.halalrm.fragment.adapter.RumahMakanAdapter;
 import com.clay.halalrm.model.RumahMakan;
 
 import java.util.List;
