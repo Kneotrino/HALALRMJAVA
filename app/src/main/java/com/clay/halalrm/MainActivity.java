@@ -364,11 +364,11 @@ public class MainActivity extends AppCompatActivity
         myIntent.putExtra("admin",isAdmin());
         myIntent.putExtra("key", item.getId());
         startActivity(myIntent);
-        List<DaftarMenu> list = Select.from(DaftarMenu.class)
-                .where(
-                        Condition.prop("Rumah_Makan_ID").eq(item.getId())
-                ).list();
-        System.out.println("MainActivity.list.size() = " + list.size());
+//        List<DaftarMenu> list = Select.from(DaftarMenu.class)
+//                .where(
+//                        Condition.prop("Rumah_Makan_ID").eq(item.getId())
+//                ).list();
+//        System.out.println("MainActivity.list.size() = " + list.size());
 //
 
     }

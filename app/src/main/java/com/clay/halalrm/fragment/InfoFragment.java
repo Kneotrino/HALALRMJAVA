@@ -3,12 +3,17 @@ package com.clay.halalrm.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.clay.halalrm.R;
+import com.clay.halalrm.fragment.dummy.ModelObject;
 import com.clay.halalrm.model.RumahMakan;
 
 /**
@@ -46,6 +51,8 @@ public class InfoFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static InfoFragment newInstance(boolean param1, long param2) {
+        System.out.println("param2 = " + param2);
+
         InfoFragment fragment = new InfoFragment();
         Bundle args = new Bundle();
         args.putBoolean(ARG_PARAM1, param1);
@@ -60,7 +67,7 @@ public class InfoFragment extends Fragment {
         System.out.println("getArguments() = " + getArguments());
         if (getArguments() != null) {
             mAdmin = getArguments().getBoolean(ARG_PARAM1,false);
-            mKey = getArguments().getLong(ARG_PARAM2);
+            mKey = getArguments().getLong(ARG_PARAM2,0l);
             rumahMakan = RumahMakan.findById(RumahMakan.class,mKey);
         }
         System.out.println("InfoFragment.rumahMakan = " + rumahMakan);
@@ -70,7 +77,21 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_info, container, false);
+
+        TextView textAlamat= (TextView) view.findViewById(R.id.textAlamat);
+        TextView textRating= (TextView) view.findViewById(R.id.textRating);
+        TextView textKode= (TextView) view.findViewById(R.id.textKode);
+
+
+        textAlamat.setText(rumahMakan.getFormatted_address());
+        textRating.setText(rumahMakan.getRating().toString());
+        textKode.setText(rumahMakan.getCompound_code());
+
+
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpRumahMakan);
+        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -111,4 +132,41 @@ public class InfoFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    private class CustomPagerAdapter extends PagerAdapter {
+        private Context mContext;
+
+        public CustomPagerAdapter(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup collection, int position) {
+            ModelObject modelObject = ModelObject.values()[position];
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            ViewGroup layout = (ViewGroup) inflater.inflate(modelObject.getLayoutResId(), collection, false);
+            collection.addView(layout);
+            return layout;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+
+        @Override
+        public int getCount() {
+            return ModelObject.values().length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            ModelObject customPagerEnum = ModelObject.values()[position];
+            return mContext.getString(customPagerEnum.getTitleResId());
+        }    }
 }

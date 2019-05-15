@@ -41,6 +41,8 @@ public class RumahMakanActivity extends AppCompatActivity
     };
 
     private void switchToInfo() {
+
+        System.out.println("rumahMakan = " + rumahMakan);
         FragmentTransaction fragmentTransaction = RumahMakanActivity.this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.RumahMakanFrame, InfoFragment.newInstance(AdminMode,idRM));
         fragmentTransaction.commit();
@@ -65,16 +67,18 @@ public class RumahMakanActivity extends AppCompatActivity
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        switchToInfo();
         SetupView();
+        switchToInfo();
 //        setTitle();
     }
 
     private void SetupView() {
+
         idRM = getIntent().getLongExtra("key",0l);
         AdminMode = getIntent().getBooleanExtra("admin",false);
+
+        System.out.println("AdminMode = " + AdminMode);
         rumahMakan = RumahMakan.findById(RumahMakan.class,idRM);
-        System.out.println("RumahMakanActivity = " + rumahMakan);
         setTitle(rumahMakan.getName());
 
     }
