@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff"
-    android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp">
+    android:layout_margin="10dp"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Username"
+        android:text="Nama Menu"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <EditText
-        android:id="@+id/txtUsername"
+        android:id="@+id/txtNamaMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nama User"
-        android:text="admin">
-
-        <requestFocus></requestFocus>
-    </EditText>
+        android:ems="10"
+        android:hint="Nama Menu"
+        android:inputType="textPersonName" />
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="Harga"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtHargaMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:text="admin">
-
-    </EditText>
-
+        android:ems="10"
+        android:hint="Harga"
+        android:inputType="numberDecimal" />
 </LinearLayout>

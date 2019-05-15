@@ -4,18 +4,29 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
+
     <TextView
         android:id="@+id/item_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="10000"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DaftarMenu"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black" />
 
 </LinearLayout>
