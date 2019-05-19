@@ -42,7 +42,7 @@ public class RumahMakan extends SugarRecord {
         return "RumahMakan{" +
                 "id='" + getId() + '\'' +
                 "name='" + name + '\'' +
-                ", reference='" + reference + '\'' +
+                ", global_code='" + global_code + '\'' +
                 '}';
     }
 

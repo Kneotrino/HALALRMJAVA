@@ -1,6 +1,7 @@
 package com.clay.halalrm.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,11 +11,14 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.clay.halalrm.R;
 import com.clay.halalrm.fragment.dummy.ModelObject;
 import com.clay.halalrm.model.RumahMakan;
+
+import static java.sql.DriverManager.println;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,6 +87,16 @@ public class InfoFragment extends Fragment {
         TextView textRating= (TextView) view.findViewById(R.id.textRating);
         TextView textKode= (TextView) view.findViewById(R.id.textKode);
 
+        final Button buttonJalur = (Button) view.findViewById(R.id.buttonJalur);
+
+        buttonJalur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenMap();
+            }
+        });
+
+
 
         textAlamat.setText(rumahMakan.getFormatted_address());
         textRating.setText(rumahMakan.getRating().toString());
@@ -92,6 +106,22 @@ public class InfoFragment extends Fragment {
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpRumahMakan);
         viewPager.setAdapter(new CustomPagerAdapter(getContext()));
         return view;
+    }
+
+    private void OpenMap() {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("www.google.com")
+                .appendPath("maps")
+                .appendPath("search")
+                .appendPath("")
+                .appendQueryParameter("api", "1")
+                .appendQueryParameter("query", rumahMakan.getName());
+//                .appendQueryParameter("query_place_id", intent.getStringExtra("id"));
+
+        String key = builder.build().toString();
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(key));
+        startActivity(intent);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

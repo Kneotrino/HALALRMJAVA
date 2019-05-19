@@ -143,8 +143,8 @@ public class RumahMakanActivity extends AppCompatActivity
                         if (inputCheck)    {
                             DaftarMenu daftarMenu =
                                     new DaftarMenu(
-                                            txtNamaMenu.getText().toString(),
                                             txtHargaMenu.getText().toString(),
+                                            txtNamaMenu.getText().toString(),
                                             rumahMakan.getId()
                                     );
                             System.out.println("Add.daftarMenu = " + daftarMenu);
@@ -195,8 +195,8 @@ public class RumahMakanActivity extends AppCompatActivity
         editTextList.add(txtNamaMenu);
         editTextList.add(txtNamaMenu);
 
-        txtNamaMenu.setText(item.getHarga());
-        txtHargaMenu.setText(item.getNama());
+        txtNamaMenu.setText(item.getNama());
+        txtHargaMenu.setText(item.getHarga());
 
 
         final AlertDialog dialog = new AlertDialog.Builder(RumahMakanActivity.this)
@@ -225,8 +225,8 @@ public class RumahMakanActivity extends AppCompatActivity
                         boolean inputCheck = checkEditText(editTextList);
                         System.out.println("inputCheck = " + inputCheck);
                         if (inputCheck)    {
-                            item.setHarga(txtNamaMenu.getText().toString());
-                            item.setNama(txtHargaMenu.getText().toString());
+                            item.setNama(txtNamaMenu.getText().toString());
+                            item.setHarga(txtHargaMenu.getText().toString());
                             System.out.println("Update.daftarMenu = " + item);
                             item.save();
                             dialog.dismiss();

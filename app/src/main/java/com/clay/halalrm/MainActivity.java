@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             Log.d("MainApp","Not First session");
+
+//            RumahMakan.deleteAll(RumahMakan.class);
+//            DaftarMenu.deleteAll(DaftarMenu.class);
+//            InputData();
         }
 
 
@@ -129,12 +133,9 @@ public class MainActivity extends AppCompatActivity
             RumahMakan RM = new RumahMakan();
             RM.setName(result.getName());
             RM.setReference(result.getReference());
-            System.out.println("RM = " + RM);
-
-
             System.out.println("result = " + result.getPlus_code());
             RM.setCompound_code(result.getPlus_code().getCompound_code());
-            RM.setGlobal_code(result.getPlus_code().getGlobal_code());
+            RM.setGlobal_code(s);
             RM.setFormatted_address(result.getFormatted_address());
             RM.setRating(result.getRating());
             RM.setPlace_id(result.getPlace_id());
@@ -147,6 +148,7 @@ public class MainActivity extends AppCompatActivity
             dataMenu dataMenu = gson.fromJson(DaftarMenu, dataMenu.class);
             List<com.clay.informhalal.dataMenu.Result> results = dataMenu.getResults();
             RM.save();
+            System.out.println("RM = " + RM);
             for (com.clay.informhalal.dataMenu.Result r: results) {
                 com.clay.halalrm.model.DaftarMenu daftarMenu =
                         new DaftarMenu(r.getHarga(),r.getMenu(),RM.getId());
