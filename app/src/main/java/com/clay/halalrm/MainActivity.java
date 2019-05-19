@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.clay.halalrm.fragment.MainFragment;
+import com.clay.halalrm.fragment.MapFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
 import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
@@ -34,6 +35,7 @@ import com.clay.halalrm.tools.MyUtils;
 import com.clay.halalrm.tools.SessionHelper;
 import com.clay.informhalal.dataMenu;
 import com.clay.informhalal.googlePlace;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.gson.Gson;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
         , RumahMakanFragment.OnListFragmentInteractionListener
         , MainFragment.OnFragmentInteractionListener
+        , MapFragment.OnFragmentInteractionListener
 {
 
         FloatingActionButton fab;
@@ -277,18 +280,18 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_all) {
             fragmentData = new RumahMakanFragment();
             setViewDataAll();
-//            setPengunaView();
-            // Handle the camera action
         } else if (id == R.id.nav_main) {
             fragmentData = new MainFragment();
             setViewMain();
-
         } else if (id == R.id.nav_jawa) {
-
+            fragmentData = MapFragment.newInstance("RMjawa.json","");
+            setViewMain();
         } else if (id == R.id.nav_padang) {
-
+            fragmentData = MapFragment.newInstance("RMpadang.json","");
+            setViewMain();
         } else if (id == R.id.nav_madura) {
-
+            fragmentData = MapFragment.newInstance("RMmadura.json","");
+            setViewMain();
         } else if (id == R.id.nav_exit) {
             System.exit(0);
         }

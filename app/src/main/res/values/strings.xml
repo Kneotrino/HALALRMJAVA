@@ -19,4 +19,5 @@
     <string name="red">Merah</string>
     <string name="blue">Biru</string>
     <string name="green">hijau</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
