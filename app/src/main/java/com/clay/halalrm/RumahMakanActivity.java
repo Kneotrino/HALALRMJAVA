@@ -24,6 +24,7 @@ import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.dummy.DummyContent;
 import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
+import com.orm.SugarContext;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -73,6 +74,11 @@ public class RumahMakanActivity extends AppCompatActivity
     RumahMakan rumahMakan;
     long idRM;
 
+    protected void onDestroy() {
+        super.onDestroy();
+//        SugarContext.terminate();
+    }
+
     Button btnAddMenu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +87,8 @@ public class RumahMakanActivity extends AppCompatActivity
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         btnAddMenu = findViewById(R.id.btnAddMenu);
+
+//        SugarContext.init(this);
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         SetupView();

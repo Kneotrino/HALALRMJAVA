@@ -1,27 +1,38 @@
 package com.clay.halalrm;
 
+import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.location.LocationListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,18 +44,21 @@ import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
 import com.clay.halalrm.tools.MyUtils;
 import com.clay.halalrm.tools.SessionHelper;
+import com.clay.informhalal.LocationReceiver;
 import com.clay.informhalal.dataMenu;
 import com.clay.informhalal.googlePlace;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.gson.Gson;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
-import com.orm.query.Condition;
-import com.orm.query.Select;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import br.com.safety.locationlistenerhelper.core.LocationTracker;
+import br.com.safety.locationlistenerhelper.core.SettingsLocationTracker;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -53,13 +67,13 @@ public class MainActivity extends AppCompatActivity
         , MapFragment.OnFragmentInteractionListener
 {
 
-        FloatingActionButton fab;
-        TextView navUserMain,navUserSub;
+    FloatingActionButton fab;
+    TextView navUserMain, navUserSub;
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SugarContext.terminate();
+        locationTracker.stopLocationService(this);
     }
 
     @Override
@@ -67,17 +81,17 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         SugarContext.init(this);
 
-        if(SessionHelper.getInstance(this).getAppFirstTime()){
-            Log.d("MainApp","First session");
+        if (SessionHelper.getInstance(this).getAppFirstTime()) {
+            Log.d("MainApp", "First session");
             SugarDb db = new SugarDb(this);
             db.onCreate(db.getDB());
-            SessionHelper.getInstance(this).setAppFirstTime(false);
             InputData();
-        }
-        else {
-            Log.d("MainApp","Not First session");
+            SessionHelper.getInstance(this).setAppFirstTime(false);
+        } else {
+            Log.d("MainApp", "Not First session");
 
 //            RumahMakan.deleteAll(RumahMakan.class);
 //            DaftarMenu.deleteAll(DaftarMenu.class);
@@ -111,15 +125,127 @@ public class MainActivity extends AppCompatActivity
         navUserSub = headerView.findViewById(R.id.txtSub);
 
         UserView();
+
+        final boolean checkLocationPermission = checkLocationPermission();
+
+
+        LocationReceiver receiver = new LocationReceiver()
+        {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                super.onReceive(context, intent);
+                if (intent.getAction() == "my.action") {
+                    Location extra = (Location) intent.getParcelableExtra(SettingsLocationTracker.LOCATION_MESSAGE);
+                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "Longitude:" + extra.getLongitude());
+                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "Altitude:" + extra.getAltitude());
+                    navUserMain.setText("Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
+//                    navUserSub.setText("Accuracy: " + extra.getAccuracy() + "Altitude:" + extra.getAltitude());
+                    lat = extra.getLatitude();
+                    lng = extra.getLongitude();
+                }
+            }
+        };
+        registerReceiver(receiver, new IntentFilter("my.action"));
     }
 
-    private void InputData() {
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
 
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(this)
+                        .setTitle("Ijin Lokasi")
+                        .setMessage("Tolong beri aplikasi ijin pada GPS")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // location-related task you need to do.
+                    if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                            == PackageManager.PERMISSION_GRANTED) {
+
+                        //Request location updates:
+                        locationTracker.onRequestPermission(requestCode,permissions,grantResults);
+                    }
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+
+                }
+                return;
+            }
+
+        }
+    }
+    private LocationTracker locationTracker = null;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        locationTracker = new LocationTracker("my.action")
+                .setInterval(50000)
+                .setGps(true)
+                .setNetWork(false)
+                .start(this, this);
+    }
+
+    //    override fun onStart() {
+//    super.onStart()
+//    locationTracker = LocationTracker("my.action")
+//            .setInterval(50000)
+//            .setGps(true)
+//            .setNetWork(false)
+//            .start(baseContext, this)
+//}    
+    Double lat;
+    Double lng;
+
+    private void InputData() {
         List<String> DATA_ALL = new LinkedList<>();
         DATA_ALL.add("RMjawa.json");
         DATA_ALL.add("RMmadura.json");
         DATA_ALL.add("RMpadang.json");
-
         for (String s: DATA_ALL) {
             SiapkanData(s);
         }
@@ -130,13 +256,10 @@ public class MainActivity extends AppCompatActivity
         Gson gson = new Gson();
         googlePlace DataPadang = gson.fromJson(padangData, googlePlace.class);
         List<googlePlace.Result> resultsPadang = DataPadang.getResults();
-        System.out.println("s = " + s);
-        System.out.println("RM data size = " + resultsPadang.size());
         for (googlePlace.Result result: resultsPadang ) {
             RumahMakan RM = new RumahMakan();
             RM.setName(result.getName());
             RM.setReference(result.getReference());
-            System.out.println("result = " + result.getPlus_code());
             RM.setCompound_code(result.getPlus_code().getCompound_code());
             RM.setGlobal_code(s);
             RM.setFormatted_address(result.getFormatted_address());
@@ -145,7 +268,6 @@ public class MainActivity extends AppCompatActivity
             RM.setUser_ratings_total(result.getUser_ratings_total());
             RM.setLat(result.getGeometry().getLocation().getLat());
             RM.setLng(result.getGeometry().getLocation().getLng());
-
 
             String DaftarMenu = MyUtils.loadJSONFromAsset(this, RM.getReference());
             dataMenu dataMenu = gson.fromJson(DaftarMenu, dataMenu.class);
@@ -323,8 +445,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     private void setViewMain() {
         hideFloatingActionButton(fab);
+        System.out.println("lat = " + lat);
+        System.out.println("lng = " + lng);
     }
 
     private void hideFloatingActionButton(FloatingActionButton fab) {
@@ -369,17 +494,11 @@ public class MainActivity extends AppCompatActivity
         myIntent.putExtra("admin",isAdmin());
         myIntent.putExtra("key", item.getId());
         startActivity(myIntent);
-//        List<DaftarMenu> list = Select.from(DaftarMenu.class)
-//                .where(
-//                        Condition.prop("Rumah_Makan_ID").eq(item.getId())
-//                ).list();
-//        System.out.println("MainActivity.list.size() = " + list.size());
-//
-
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
         System.out.println("uri = " + uri);
     }
+
 }

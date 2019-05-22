@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_subtitle">User Mode</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Admin Mode</string>
 
@@ -19,5 +19,5 @@
     <string name="red">Merah</string>
     <string name="blue">Biru</string>
     <string name="green">hijau</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Peta RM Halal Kupang</string>
 </resources>

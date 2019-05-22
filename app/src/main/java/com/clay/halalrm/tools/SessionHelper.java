@@ -34,11 +34,11 @@ public class SessionHelper {
 
     public void setAppFirstTime(boolean status){
         editor.putBoolean(KEY_FIRST, status);
-
         editor.commit();
     }
 
     public boolean getAppFirstTime(){
+        System.out.println("pref = " + pref);
         return pref.getBoolean(KEY_FIRST, true);
     }
 }

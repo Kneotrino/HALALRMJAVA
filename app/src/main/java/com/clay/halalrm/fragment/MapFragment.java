@@ -1,9 +1,12 @@
 package com.clay.halalrm.fragment;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -81,7 +84,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-        List<RumahMakan> list;
+    List<RumahMakan> list;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,6 +97,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 ).list();
         System.out.println("list = " + list.size());
 
+        if (list.size() == 0){
+            list = RumahMakan.listAll(RumahMakan.class);
+            System.out.println("list = " + list.size());
+        }
+
         View view = inflater.inflate(R.layout.fragment_map, container, false);
 
 
@@ -101,7 +110,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-        return  view;
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -127,15 +136,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         super.onDetach();
         mListener = null;
     }
+
     private GoogleMap mMap;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        final Map<Marker,Long> map=new HashMap<>();
+        final Map<Marker, Long> map = new HashMap<>();
 
-        LatLng myLokasi = new LatLng(-10.16572447010728,123.5985479298927);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng myLokasi = new LatLng(-10.16572447010728, 123.5985479298927);
+
+//        this.mMap.getUiSettings().setMyLocationButtonEnabled(false);
+//        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        this.mMap.setMyLocationEnabled(true);
+//        mMap.addMarker(new MarkerOptions().position(myLokasi).title("Kamu di sini"));
 
         for (RumahMakan rumahMakan: list) {
             LatLng RMLL = new LatLng(rumahMakan.getLat(),rumahMakan.getLng());
