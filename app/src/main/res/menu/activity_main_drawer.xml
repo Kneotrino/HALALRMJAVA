@@ -26,7 +26,7 @@
             android:title="RM Semua" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Opsi">
         <menu>
             <item
                 android:id="@+id/nav_exit"
@@ -34,5 +34,6 @@
                 android:title="Keluar" />
         </menu>
     </item>
+
 
 </menu>

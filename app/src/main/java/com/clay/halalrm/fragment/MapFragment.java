@@ -1,14 +1,20 @@
 package com.clay.halalrm.fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +23,7 @@ import com.clay.halalrm.MainActivity;
 import com.clay.halalrm.R;
 import com.clay.halalrm.RumahMakanActivity;
 import com.clay.halalrm.model.RumahMakan;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,6 +38,8 @@ import com.orm.query.Select;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -144,14 +153,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mMap = googleMap;
         final Map<Marker, Long> map = new HashMap<>();
 
-        LatLng myLokasi = new LatLng(-10.16572447010728, 123.5985479298927);
 
-//        this.mMap.getUiSettings().setMyLocationButtonEnabled(false);
-//        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        this.mMap.setMyLocationEnabled(true);
-//        mMap.addMarker(new MarkerOptions().position(myLokasi).title("Kamu di sini"));
+        final boolean checkLocationPermission = checkLocationPermission();
+
+        mMap.setMyLocationEnabled(true);
+
 
         for (RumahMakan rumahMakan: list) {
             LatLng RMLL = new LatLng(rumahMakan.getLat(),rumahMakan.getLng());
@@ -164,25 +170,80 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             map.put(marker,rumahMakan.getId());
         }
 
-        mMap.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                        myLokasi,
-                        15.0f
-                )
-        );
-
+            if (mMap != null) {
+                mMap.setMyLocationEnabled(true);//Makes the users current location visible by displaying a blue dot.
+                LocationManager lm = (LocationManager)
+                        getContext().getSystemService(Context.LOCATION_SERVICE);
+                String provider=lm.getBestProvider(new Criteria(), true);
+                Location loc=lm.getLastKnownLocation(provider);
+                if (loc!=null){
+                    onLocationChanged(loc);
+                }
+            }
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override public boolean onMarkerClick(Marker marker) {
-                Intent myIntent = new Intent(getActivity(), RumahMakanActivity.class);
-                myIntent.putExtra("admin",false);
-                myIntent.putExtra("key", map.get(marker));
-                startActivity(myIntent);
+
+                    Intent myIntent = new Intent(getActivity(), RumahMakanActivity.class);
+                    myIntent.putExtra("admin",false);
+                    myIntent.putExtra("key", map.get(marker));
+                    startActivity(myIntent);
                 return false;
             }
         }
         );
 
     }
+
+    private void onLocationChanged(Location loc) {
+        LatLng latlng=new LatLng(loc.getLatitude(),loc.getLongitude());// This methods gets the users current longitude and latitude.
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));//Moves the camera to users current longitude and latitude
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,(float) 12));//Animates camera and zooms to preferred state on the user's current location.
+    }
+
+    private boolean checkLocationPermission() {
+
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Ijin Lokasi")
+                        .setMessage("Tolong beri aplikasi ijin pada GPS")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Prompt the user once explanation has been shown
+                                ActivityCompat.requestPermissions(getActivity(),
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
+                            }
+                        })
+                        .create()
+                        .show();
+
+
+            } else {
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+            }
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
 
     /**
      * This interface must be implemented by activities that contain this

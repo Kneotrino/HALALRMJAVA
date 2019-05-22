@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/side_nav_bar"
     android:gravity="bottom"
     android:orientation="vertical"
+    android:paddingTop="50dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <TextView
@@ -20,5 +21,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />
+
+    <TextView
+        android:id="@+id/txtLat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Latitude" />
+
+    <TextView
+        android:id="@+id/txtLng"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="longitude" />
+
+    <TextView
+        android:id="@+id/txtAcc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accuracy" />
+
+    <TextView
+        android:id="@+id/txtAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FormattedAdrees"
+        android:visibility="gone" />
 
 </LinearLayout>

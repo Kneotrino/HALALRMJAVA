@@ -36,7 +36,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.net.Uri;
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.MapFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
@@ -50,9 +50,11 @@ import com.clay.informhalal.googlePlace;
 import com.google.gson.Gson;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
+import com.clay.halalrm.tools.requestHandler;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,7 +70,8 @@ public class MainActivity extends AppCompatActivity
 {
 
     FloatingActionButton fab;
-    TextView navUserMain, navUserSub;
+    TextView navUserMain, navUserSub, navAcc, navLng, navLat,navAdd;
+
 
     @Override
     protected void onDestroy() {
@@ -123,6 +126,11 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         navUserMain = headerView.findViewById(R.id.txtMain);
         navUserSub = headerView.findViewById(R.id.txtSub);
+        navAcc = headerView.findViewById(R.id.txtAcc);
+        navLat = headerView.findViewById(R.id.txtLat);
+        navLng = headerView.findViewById(R.id.txtLng);
+        navAdd = headerView.findViewById(R.id.txtAdd);
+
 
         UserView();
 
@@ -136,9 +144,15 @@ public class MainActivity extends AppCompatActivity
                 super.onReceive(context, intent);
                 if (intent.getAction() == "my.action") {
                     Location extra = (Location) intent.getParcelableExtra(SettingsLocationTracker.LOCATION_MESSAGE);
-                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "Longitude:" + extra.getLongitude());
-                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "Altitude:" + extra.getAltitude());
-                    navUserMain.setText("Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
+                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
+                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
+                    navAcc.setText("Accuracy: " + extra.getAccuracy());
+                    navLat.setText("Latitude: " + extra.getLatitude());
+                    navLng.setText("Longitude:" + extra.getLongitude());
+
+                    if (extra.getAccuracy() < 15d)
+                        getFormattedAddres(extra.getLatitude(),extra.getLongitude());
+//                    navUserMain.setText("Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
 //                    navUserSub.setText("Accuracy: " + extra.getAccuracy() + "Altitude:" + extra.getAltitude());
                     lat = extra.getLatitude();
                     lng = extra.getLongitude();
@@ -146,6 +160,23 @@ public class MainActivity extends AppCompatActivity
             }
         };
         registerReceiver(receiver, new IntentFilter("my.action"));
+    }
+
+    private void getFormattedAddres(double latitude, double longitude) {
+        final Uri.Builder builder = new Uri.Builder();
+        builder.scheme("https")
+                .authority("maps.googleapis.com")
+                .appendPath("maps")
+                .appendPath("api")
+                .appendPath("geocode")
+                .appendPath("json")
+                .appendQueryParameter("latlng", latitude+","+longitude)
+                .appendQueryParameter("key", "AIzaSyCFiHUsYy5b6G7_8ehKf7wIFNhTjjm22pg");
+        final String string = builder.build().toString();
+        System.out.println("string = " + string);
+//        final String rest = requestHandler.INSTANCE.readingRest(this, string);
+//        System.out.println("rest = " + rest);
+////        readingRest(this,string);
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;

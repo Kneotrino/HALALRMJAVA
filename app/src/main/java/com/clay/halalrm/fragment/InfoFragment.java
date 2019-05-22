@@ -86,6 +86,7 @@ public class InfoFragment extends Fragment {
         TextView textAlamat= (TextView) view.findViewById(R.id.textAlamat);
         TextView textRating= (TextView) view.findViewById(R.id.textRating);
         TextView textKode= (TextView) view.findViewById(R.id.textKode);
+        TextView textNamaRM= (TextView) view.findViewById(R.id.textNamaRM);
 
         final Button buttonJalur = (Button) view.findViewById(R.id.buttonJalur);
 
@@ -101,7 +102,7 @@ public class InfoFragment extends Fragment {
         textAlamat.setText(rumahMakan.getFormatted_address());
         textRating.setText(rumahMakan.getRating().toString());
         textKode.setText(rumahMakan.getCompound_code());
-
+        textNamaRM.setText(rumahMakan.getName());
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpRumahMakan);
         viewPager.setAdapter(new CustomPagerAdapter(getContext()));
