@@ -144,8 +144,8 @@ public class MainActivity extends AppCompatActivity
                 super.onReceive(context, intent);
                 if (intent.getAction() == "my.action") {
                     Location extra = (Location) intent.getParcelableExtra(SettingsLocationTracker.LOCATION_MESSAGE);
-                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
-                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
+//                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
+//                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
                     navAcc.setText("Accuracy: " + extra.getAccuracy());
                     navLat.setText("Latitude: " + extra.getLatitude());
                     navLng.setText("Longitude:" + extra.getLongitude());
@@ -520,10 +520,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(RumahMakan item) {
         System.out.println("item = " + item);
+        System.out.println("lat = " + lat);
+        System.out.println("lng = " + lng);
 
         Intent myIntent = new Intent(MainActivity.this, RumahMakanActivity.class);
         myIntent.putExtra("admin",isAdmin());
         myIntent.putExtra("key", item.getId());
+        myIntent.putExtra("lat", lat);
+        myIntent.putExtra("lng", lng);
         startActivity(myIntent);
     }
 

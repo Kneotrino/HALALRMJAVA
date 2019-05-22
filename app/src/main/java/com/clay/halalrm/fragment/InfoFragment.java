@@ -17,6 +17,9 @@ import android.widget.TextView;
 import com.clay.halalrm.R;
 import com.clay.halalrm.fragment.dummy.ModelObject;
 import com.clay.halalrm.model.RumahMakan;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.Locale;
 
 import static java.sql.DriverManager.println;
 
@@ -38,6 +41,7 @@ public class InfoFragment extends Fragment {
     private Boolean  mAdmin;
     private long     mKey;
     private RumahMakan rumahMakan;
+    private double myLat,myLng;
 
     private OnFragmentInteractionListener mListener;
 
@@ -54,13 +58,19 @@ public class InfoFragment extends Fragment {
      * @return A new instance of fragment InfoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InfoFragment newInstance(boolean param1, long param2) {
-        System.out.println("param2 = " + param2);
+    public static InfoFragment newInstance(
+            boolean param1,
+            long param2,
+            double lat,
+            double lng
+    ) {
 
         InfoFragment fragment = new InfoFragment();
         Bundle args = new Bundle();
         args.putBoolean(ARG_PARAM1, param1);
         args.putLong(ARG_PARAM2, param2);
+        args.putDouble("lat",lat);
+        args.putDouble("lng",lng);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,6 +82,8 @@ public class InfoFragment extends Fragment {
         if (getArguments() != null) {
             mAdmin = getArguments().getBoolean(ARG_PARAM1,false);
             mKey = getArguments().getLong(ARG_PARAM2,0l);
+            myLat = getArguments().getDouble("lat");
+            myLng = getArguments().getDouble("lng");
             rumahMakan = RumahMakan.findById(RumahMakan.class,mKey);
         }
         System.out.println("InfoFragment.rumahMakan = " + rumahMakan);
@@ -89,11 +101,18 @@ public class InfoFragment extends Fragment {
         TextView textNamaRM= (TextView) view.findViewById(R.id.textNamaRM);
 
         final Button buttonJalur = (Button) view.findViewById(R.id.buttonJalur);
+        final Button buttonOpenMap = (Button) view.findViewById(R.id.buttonOpenMap);
 
-        buttonJalur.setOnClickListener(new View.OnClickListener() {
+        buttonOpenMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 OpenMap();
+            }
+        });
+        buttonJalur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OpenJalur();
             }
         });
 
@@ -107,6 +126,22 @@ public class InfoFragment extends Fragment {
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpRumahMakan);
         viewPager.setAdapter(new CustomPagerAdapter(getContext()));
         return view;
+    }
+
+    private void OpenJalur() {
+
+        final String format = String.format(
+                Locale.ENGLISH,
+                "http://maps.google.com/maps?saddr=%f,%f&daddr=%f,%f",
+                myLat,
+                myLng,
+                rumahMakan.getLat(),
+                rumahMakan.getLng()
+        );
+        System.out.println("format = " + format);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(format));
+        intent.setPackage("com.google.android.apps.maps");
+        startActivity(intent);
     }
 
     private void OpenMap() {

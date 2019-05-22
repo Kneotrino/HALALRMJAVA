@@ -54,7 +54,15 @@ public class RumahMakanActivity extends AppCompatActivity
     private void switchToInfo() {
         btnAddMenu.setVisibility(View.GONE);
         FragmentTransaction fragmentTransaction = RumahMakanActivity.this.getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.RumahMakanFrame, InfoFragment.newInstance(AdminMode,idRM));
+        fragmentTransaction.replace(R.id.RumahMakanFrame,
+                InfoFragment.newInstance(
+                        AdminMode,
+                        idRM,
+                        lat,
+                        lng
+                )
+
+        );
         fragmentTransaction.commit();
     }
 
@@ -73,6 +81,8 @@ public class RumahMakanActivity extends AppCompatActivity
     boolean AdminMode;
     RumahMakan rumahMakan;
     long idRM;
+    double lat;
+    double lng;
 
     protected void onDestroy() {
         super.onDestroy();
@@ -89,16 +99,21 @@ public class RumahMakanActivity extends AppCompatActivity
         btnAddMenu = findViewById(R.id.btnAddMenu);
 
 //        SugarContext.init(this);
+        SetupView();
 
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        SetupView();
         switchToInfo();
 //        setTitle();
     }
 
     private void SetupView() {
 
+        final Bundle bundleExtra = getIntent().getExtras();
+        System.out.println("bundleExtra = " + bundleExtra);
+
         idRM = getIntent().getLongExtra("key",0l);
+        lat = getIntent().getDoubleExtra("lat",-10.162353);
+        lng = getIntent().getDoubleExtra("lng",123.5915637);
         AdminMode = getIntent().getBooleanExtra("admin",false);
 
         System.out.println("AdminMode = " + AdminMode);

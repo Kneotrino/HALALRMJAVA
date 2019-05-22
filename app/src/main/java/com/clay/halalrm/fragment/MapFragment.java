@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -77,6 +78,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public static MapFragment newInstance(String param1, String param2) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
+        System.out.println("args = " + args);
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
@@ -107,6 +109,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         System.out.println("list = " + list.size());
 
         if (list.size() == 0){
+            Snackbar snackBar = Snackbar.make(getActivity().findViewById(android.R.id.content),
+                    "Tidak Ada Rumah Makan Jenis Ini", Snackbar.LENGTH_LONG);
+            snackBar.show();
+
             list = RumahMakan.listAll(RumahMakan.class);
             System.out.println("list = " + list.size());
         }
@@ -186,6 +192,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     Intent myIntent = new Intent(getActivity(), RumahMakanActivity.class);
                     myIntent.putExtra("admin",false);
                     myIntent.putExtra("key", map.get(marker));
+                    myIntent.putExtra("lat", latlng.latitude);
+                    myIntent.putExtra("lng", latlng.longitude);
                     startActivity(myIntent);
                 return false;
             }
@@ -194,8 +202,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
+        LatLng latlng;// This methods gets the users current longitude and latitude.
     private void onLocationChanged(Location loc) {
-        LatLng latlng=new LatLng(loc.getLatitude(),loc.getLongitude());// This methods gets the users current longitude and latitude.
+        latlng = new LatLng(loc.getLatitude(),loc.getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));//Moves the camera to users current longitude and latitude
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng,(float) 12));//Animates camera and zooms to preferred state on the user's current location.
     }
