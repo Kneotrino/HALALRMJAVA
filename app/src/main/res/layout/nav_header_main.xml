@@ -44,7 +44,7 @@
         android:id="@+id/txtAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="FormattedAdrees"
-        android:visibility="gone" />
+        android:text=""
+   />
 
 </LinearLayout>

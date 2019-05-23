@@ -8,12 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.location.LocationListener;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -36,7 +32,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.net.Uri;
+import android.widget.Toast;
+
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.MapFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
@@ -44,17 +41,24 @@ import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
 import com.clay.halalrm.tools.MyUtils;
 import com.clay.halalrm.tools.SessionHelper;
+import com.clay.halalrm.tools.requestHandler;
 import com.clay.informhalal.LocationReceiver;
 import com.clay.informhalal.dataMenu;
+import com.clay.informhalal.geoCode;
 import com.clay.informhalal.googlePlace;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+//import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.Places;
+
 import com.google.gson.Gson;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
-import com.clay.halalrm.tools.requestHandler;
+import com.rtchagas.pingplacepicker.PingPlacePicker;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -96,21 +100,25 @@ public class MainActivity extends AppCompatActivity
         } else {
             Log.d("MainApp", "Not First session");
 
+            String kunci = getResources().getString(R.string.google_maps_key);
+            Places.initialize(this,kunci);
+
 //            RumahMakan.deleteAll(RumahMakan.class);
 //            DaftarMenu.deleteAll(DaftarMenu.class);
 //            InputData();
         }
 
+        kunci = getResources().getString(R.string.google_maps_key);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showPlacePicker();
             }
         });
 
@@ -133,6 +141,7 @@ public class MainActivity extends AppCompatActivity
 
 
         UserView();
+        showFloatingActionButton(fab);
 
         final boolean checkLocationPermission = checkLocationPermission();
 
@@ -144,13 +153,13 @@ public class MainActivity extends AppCompatActivity
                 super.onReceive(context, intent);
                 if (intent.getAction() == "my.action") {
                     Location extra = (Location) intent.getParcelableExtra(SettingsLocationTracker.LOCATION_MESSAGE);
-//                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
-//                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
+                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
+                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
                     navAcc.setText("Accuracy: " + extra.getAccuracy());
                     navLat.setText("Latitude: " + extra.getLatitude());
                     navLng.setText("Longitude:" + extra.getLongitude());
 
-                    if (extra.getAccuracy() < 15d)
+                    if (extra.getAccuracy() < 20d)
                         getFormattedAddres(extra.getLatitude(),extra.getLongitude());
 //                    navUserMain.setText("Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
 //                    navUserSub.setText("Accuracy: " + extra.getAccuracy() + "Altitude:" + extra.getAltitude());
@@ -162,8 +171,67 @@ public class MainActivity extends AppCompatActivity
         registerReceiver(receiver, new IntentFilter("my.action"));
     }
 
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK) {
+//            switch (requestCode) {
+//                case PLACE_PICKER_REQUEST:
+//                    Place place = PlacePicker.getPlace(this, data);
+//                    String placeName = String.format("Place: %s", place.getName());
+//                    double latitude = place.getLatLng().latitude;
+//                    System.out.println("latitude = " + latitude);
+//                    double longitude = place.getLatLng().longitude;
+//                    System.out.println("longitude = " + longitude);
+//                    LatLng coordinate = new LatLng(latitude, longitude);
+//            }
+//        }
+//    }
+
+    private void showPlacePicker() {
+
+        PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
+        builder.setAndroidApiKey(kunci)
+                .setGeolocationApiKey(kunci);
+        try {
+            Intent placeIntent = builder.build(MainActivity.this);
+            startActivityForResult(placeIntent, PLACE_PICKER_REQUEST);
+        }
+        catch (Exception ex) {
+            // Google Play services is not available...
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if ((requestCode == PLACE_PICKER_REQUEST) && (resultCode == RESULT_OK)) {
+            Place place = PingPlacePicker.Companion.getPlace(data);
+            if (place != null) {
+                Toast.makeText(this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
+                System.out.println("place.getLatLng() = " + place.getLatLng());
+            }
+        }
+    }
+
+    private final static int PLACE_PICKER_REQUEST = 111;
+//    private void openPlacePicker() {
+//        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+//        try {
+//            // for activty
+//            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+//            // for fragment
+//            //startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
+//        } catch (GooglePlayServicesRepairableException e) {
+//            e.printStackTrace();
+//        } catch (GooglePlayServicesNotAvailableException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+        String kunci;
     private void getFormattedAddres(double latitude, double longitude) {
         final Uri.Builder builder = new Uri.Builder();
+
         builder.scheme("https")
                 .authority("maps.googleapis.com")
                 .appendPath("maps")
@@ -171,12 +239,27 @@ public class MainActivity extends AppCompatActivity
                 .appendPath("geocode")
                 .appendPath("json")
                 .appendQueryParameter("latlng", latitude+","+longitude)
-                .appendQueryParameter("key", "AIzaSyCFiHUsYy5b6G7_8ehKf7wIFNhTjjm22pg");
+                .appendQueryParameter("key", kunci);
         final String string = builder.build().toString();
         System.out.println("string = " + string);
-//        final String rest = requestHandler.INSTANCE.readingRest(this, string);
+        final String rest = requestHandler.INSTANCE.readingRest(this, string);
 //        System.out.println("rest = " + rest);
-////        readingRest(this,string);
+
+        final Gson gson = new Gson();
+        final geoCode formatted_address = gson.fromJson(rest, geoCode.class);
+        Log.d("data.status", formatted_address.getStatus());
+        if (formatted_address.getStatus().equals("OK"))
+        {
+            final String address = formatted_address.getResults().get(0).getFormatted_address();
+            System.out.println("address = " + address);
+            navAdd.setText(address);
+
+        }
+        else
+        {
+            navAdd.setText("");
+        }
+        ////        readingRest(this,string);
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -220,6 +303,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -260,7 +344,6 @@ public class MainActivity extends AppCompatActivity
                 .setNetWork(false)
                 .start(this, this);
     }
-
     //    override fun onStart() {
 //    super.onStart()
 //    locationTracker = LocationTracker("my.action")
@@ -350,7 +433,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_login) {
 
             LayoutInflater li = LayoutInflater.from(MainActivity.this);
             View prompt = li.inflate(R.layout.form_login, null);
@@ -387,6 +470,7 @@ public class MainActivity extends AppCompatActivity
                                 txtUsername.setError("Salah username");
 
                             }
+                            makeSnakeBar(null,"Berhasil Masuk Sebagai Admin");
                             setAdmin(login);
                         }
                     });
@@ -395,6 +479,17 @@ public class MainActivity extends AppCompatActivity
             dialog.show();
 
             return true;
+        }
+        if (id == R.id.action_logout) {
+
+            if (!isAdmin())
+                makeSnakeBar(null,"Anda Bukan Admin");
+            else{
+                makeSnakeBar(null,"Berhasil keluar Admin Mode");
+                navUserSub.setText("Admin Mode");
+                hideFloatingActionButton(fab);
+                setAdmin(false);
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -469,7 +564,6 @@ public class MainActivity extends AppCompatActivity
         }
         else {
             hideFloatingActionButton(fab);
-
         }
 
 
@@ -479,8 +573,17 @@ public class MainActivity extends AppCompatActivity
 
     private void setViewMain() {
         hideFloatingActionButton(fab);
-        System.out.println("lat = " + lat);
-        System.out.println("lng = " + lng);
+        
+        if (isAdmin())
+            showAddRumahMakan();
+        else
+            hideAddRumahMakan();
+    }
+
+    private void hideAddRumahMakan() {
+    }
+
+    private void showAddRumahMakan() {
     }
 
     private void hideFloatingActionButton(FloatingActionButton fab) {
