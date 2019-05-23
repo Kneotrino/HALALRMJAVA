@@ -45,7 +45,7 @@ dependencies {
 
     implementation 'com.google.android.libraries.places:places:1.1.0'
     // PING Place Picker
-    implementation 'com.github.rtchagas:pingplacepicker:1.0.0'
+//    implementation 'com.github.rtchagas:pingplacepicker:1.0.4'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

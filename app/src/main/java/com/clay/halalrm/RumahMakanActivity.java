@@ -1,8 +1,13 @@
 package com.clay.halalrm;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,10 +29,15 @@ import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.dummy.DummyContent;
 import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
+import com.clay.halalrm.tools.ImageSaver;
 import com.orm.SugarContext;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import static com.orm.SugarRecord.save;
 
 public class RumahMakanActivity extends AppCompatActivity
     implements InfoFragment.OnFragmentInteractionListener, DaftarMenuFragment.OnListFragmentInteractionListener
@@ -50,6 +60,57 @@ public class RumahMakanActivity extends AppCompatActivity
             return false;
         }
     };
+
+    public static final int PICK_IMAGE = 1;
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        System.out.println("requestCode = " + requestCode);
+        System.out.println("resultCode = " + resultCode);
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == PICK_IMAGE) {
+
+            final Uri uri = data.getData();
+            System.out.println("uri.getPath() = " + uri.getPath());
+            String filename = rumahMakan.getName()+rumahMakan.getId()+".jpg";
+            System.out.println("filename = " + filename);
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                final ImageSaver saver = new ImageSaver(getApplicationContext())
+                        .setFileName(filename)
+                        .setExternal(false)//image save in external directory or app folder default value is false
+                        .setDirectory("RMgambar");
+                saver.save(bitmap);
+                rumahMakan.setFoto1(saver.getSaved().getPath());
+                rumahMakan.save();
+                switchToInfo();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+//            String filename = rumahMakan.getName()+rumahMakan.getId()+ position+".jpg";
+//            System.out.println("filename = " + filename);
+
+//            if (extras != null) {
+//                Bitmap newProfilePic = extras.getParcelable("data");
+//                      new ImageSaver(getApplicationContext())
+//                                .setFileName(rumahMakan.getName() + position +"_.jpg")
+//                                .setExternal(false)//image save in external directory or app folder default value is false
+//                                .setDirectory("RMgamabar")
+//                                .save(newProfilePic); //Bitmap from your code
+//            }
+        }
+
+
+    }
+
 
     private void switchToInfo() {
         btnAddMenu.setVisibility(View.GONE);

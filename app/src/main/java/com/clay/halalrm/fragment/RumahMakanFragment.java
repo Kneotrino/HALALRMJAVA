@@ -71,6 +71,7 @@ public class RumahMakanFragment extends Fragment {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             List<RumahMakan> rumahMakans = RumahMakan.listAll(RumahMakan.class);
+            System.out.println("rumahMakans.size() = " + rumahMakans.size());
             recyclerView.setAdapter(new RumahMakanAdapter(rumahMakans, mListener));
         }
         return view;

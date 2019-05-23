@@ -1,24 +1,36 @@
 package com.clay.halalrm.fragment;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.clay.halalrm.R;
 import com.clay.halalrm.fragment.dummy.ModelObject;
 import com.clay.halalrm.model.RumahMakan;
+import com.clay.halalrm.tools.ImageSaver;
 import com.google.android.gms.maps.model.LatLng;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 import static java.sql.DriverManager.println;
@@ -123,8 +135,29 @@ public class InfoFragment extends Fragment {
         textKode.setText(rumahMakan.getCompound_code());
         textNamaRM.setText(rumahMakan.getName());
 
+        List<Bitmap> imageURL = new LinkedList<>();
+
+        try {
+            System.out.println("rumahMakan = " + rumahMakan.getFoto1());
+            File file1 = new File(rumahMakan.getFoto1());
+            if (file1.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeFile(rumahMakan.getFoto1());
+                imageURL.add(bitmap);
+            }
+            else {
+                System.out.println("File1 nil");
+            }
+        }
+        catch (Exception e)
+        {
+//            e.printStackTrace();
+        }
+
+        imageURL.add(rumahMakan.gambar2());
+        imageURL.add(rumahMakan.gambar3());
+
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpRumahMakan);
-        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
+        viewPager.setAdapter(new CustomPagerAdapter(getContext(), imageURL));
         return view;
     }
 
@@ -201,17 +234,31 @@ public class InfoFragment extends Fragment {
 
     private class CustomPagerAdapter extends PagerAdapter {
         private Context mContext;
+        private List<Bitmap> mImageURL;
 
-        public CustomPagerAdapter(Context context) {
+        public CustomPagerAdapter(Context context, List<Bitmap> imageURL) {
             mContext = context;
+            mImageURL = imageURL;
         }
 
         @Override
-        public Object instantiateItem(ViewGroup collection, int position) {
-            ModelObject modelObject = ModelObject.values()[position];
+        public Object instantiateItem(ViewGroup collection, final int position) {
+            final ModelObject modelObject = ModelObject.values()[position];
             LayoutInflater inflater = LayoutInflater.from(mContext);
             ViewGroup layout = (ViewGroup) inflater.inflate(modelObject.getLayoutResId(), collection, false);
+
+            final ImageView imageView = layout.findViewById(modelObject.getImageViewId());
             collection.addView(layout);
+            imageView.setImageBitmap(mImageURL.get(position));
+
+            layout.setOnClickListener(new View.OnClickListener(){
+                public void onClick(View v){
+                    //this will log the page number that was click
+                    Log.i("TAG", "This page was clicked: " + position);
+                    SimpanGambar(position);
+
+                }
+            });
             return layout;
         }
 
@@ -232,7 +279,54 @@ public class InfoFragment extends Fragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            ModelObject customPagerEnum = ModelObject.values()[position];
-            return mContext.getString(customPagerEnum.getTitleResId());
-        }    }
+            return mContext.getString(R.string.app_name);
+        }
+    }
+    public static final int PICK_IMAGE = 1;
+
+    private void SimpanGambar(int position) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.putExtra("position", position);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
+
+
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        System.out.println("requestCode = " + requestCode);
+//        System.out.println("resultCode = " + resultCode);
+////        if (resultCode != Activity.RESULT_OK) {
+////            return;
+////        }
+////        if (requestCode == 1) {
+////            final Bundle extras = data.getExtras();
+////            System.out.println("extras = " + extras);
+////
+////            final int position = data.getIntExtra("position",1);
+////            System.out.println("position = " + position);
+////
+////            String filename = rumahMakan.getName()+rumahMakan.getId()+ position+".jpg";
+////            System.out.println("filename = " + filename);
+////
+////            if (extras != null) {
+////                //Get image
+////
+//////                Bitmap newProfilePic = extras.getParcelable("data");
+//////                      new ImageSaver(getApplicationContext())
+//////                                .setFileName(rumahMakan.getName() + position +"_.jpg")
+//////                                .setExternal(false)//image save in external directory or app folder default value is false
+//////                                .setDirectory("RMgamabar")
+//////                                .save(newProfilePic); //Bitmap from your code
+////
+////            }
+////        }
+//    }
+
+
 }

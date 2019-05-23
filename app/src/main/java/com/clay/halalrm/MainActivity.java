@@ -7,9 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -31,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,25 +50,23 @@ import com.clay.informhalal.LocationReceiver;
 import com.clay.informhalal.dataMenu;
 import com.clay.informhalal.geoCode;
 import com.clay.informhalal.googlePlace;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-//import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.Places;
-
+import com.google.android.libraries.places.api.model.Place;
 import com.google.gson.Gson;
 import com.orm.SugarContext;
 import com.orm.SugarDb;
-import com.rtchagas.pingplacepicker.PingPlacePicker;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import br.com.safety.locationlistenerhelper.core.LocationTracker;
 import br.com.safety.locationlistenerhelper.core.SettingsLocationTracker;
+
+//import com.google.android.gms.location.places.Place;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
@@ -153,8 +155,8 @@ public class MainActivity extends AppCompatActivity
                 super.onReceive(context, intent);
                 if (intent.getAction() == "my.action") {
                     Location extra = (Location) intent.getParcelableExtra(SettingsLocationTracker.LOCATION_MESSAGE);
-                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
-                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
+//                    Log.d("Location LL: ", "Latitude: " + extra.getLatitude() + "\nLongitude:" + extra.getLongitude());
+//                    Log.d("Location AR: ", "Accuracy: " + extra.getAccuracy() + "\nAltitude:" + extra.getAltitude());
                     navAcc.setText("Accuracy: " + extra.getAccuracy());
                     navLat.setText("Latitude: " + extra.getLatitude());
                     navLng.setText("Longitude:" + extra.getLongitude());
@@ -169,6 +171,16 @@ public class MainActivity extends AppCompatActivity
             }
         };
         registerReceiver(receiver, new IntentFilter("my.action"));
+    }
+
+    private void showPlacePicker() {
+        Intent myIntent = new Intent(MainActivity.this, RumahMakanActivity.class);
+        myIntent.putExtra("admin",isAdmin());
+        myIntent.putExtra("key", 1l);
+        myIntent.putExtra("lat", lat);
+        myIntent.putExtra("lng", lng);
+        startActivity(myIntent);
+
     }
 
 //    @Override
@@ -188,30 +200,30 @@ public class MainActivity extends AppCompatActivity
 //        }
 //    }
 
-    private void showPlacePicker() {
+//    private void showPlacePicker() {
+//
+//        PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
+//        builder.setAndroidApiKey(kunci)
+//                .setGeolocationApiKey(kunci);
+//        try {
+//            Intent placeIntent = builder.build(MainActivity.this);
+//            startActivityForResult(placeIntent, PLACE_PICKER_REQUEST);
+//        }
+//        catch (Exception ex) {
+//            // Google Play services is not available...
+//        }
+//    }
 
-        PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
-        builder.setAndroidApiKey(kunci)
-                .setGeolocationApiKey(kunci);
-        try {
-            Intent placeIntent = builder.build(MainActivity.this);
-            startActivityForResult(placeIntent, PLACE_PICKER_REQUEST);
-        }
-        catch (Exception ex) {
-            // Google Play services is not available...
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ((requestCode == PLACE_PICKER_REQUEST) && (resultCode == RESULT_OK)) {
-            Place place = PingPlacePicker.Companion.getPlace(data);
-            if (place != null) {
-                Toast.makeText(this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
-                System.out.println("place.getLatLng() = " + place.getLatLng());
-            }
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if ((requestCode == PLACE_PICKER_REQUEST) && (resultCode == RESULT_OK)) {
+//            Place place = PingPlacePicker.Companion.getPlace(data);
+//            if (place != null) {
+//                Toast.makeText(this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
+//                System.out.println("place.getLatLng() = " + place.getLatLng());
+//            }
+//        }
+//    }
 
     private final static int PLACE_PICKER_REQUEST = 111;
 //    private void openPlacePicker() {
@@ -241,7 +253,7 @@ public class MainActivity extends AppCompatActivity
                 .appendQueryParameter("latlng", latitude+","+longitude)
                 .appendQueryParameter("key", kunci);
         final String string = builder.build().toString();
-        System.out.println("string = " + string);
+//        System.out.println("string = " + string);
         final String rest = requestHandler.INSTANCE.readingRest(this, string);
 //        System.out.println("rest = " + rest);
 
@@ -357,9 +369,9 @@ public class MainActivity extends AppCompatActivity
 
     private void InputData() {
         List<String> DATA_ALL = new LinkedList<>();
-        DATA_ALL.add("RMjawa.json");
+//        DATA_ALL.add("RMjawa.json");
         DATA_ALL.add("RMmadura.json");
-        DATA_ALL.add("RMpadang.json");
+//        DATA_ALL.add("RMpadang.json");
         for (String s: DATA_ALL) {
             SiapkanData(s);
         }
@@ -383,6 +395,23 @@ public class MainActivity extends AppCompatActivity
             RM.setLat(result.getGeometry().getLocation().getLat());
             RM.setLng(result.getGeometry().getLocation().getLng());
 
+
+//            getBitmapAsByteArray()
+//            Bitmap icon1 = BitmapFactory.decodeResource(this.getResources(),
+//                    R.drawable.rm_teluk_bayur1);
+//            final byte[] bitmap1 = getBitmapAsByteArray(icon1);
+//            RM.setImage1(bitmap1);
+
+//            Bitmap icon2 = BitmapFactory.decodeResource(this.getResources(),
+//                    R.drawable.halal);
+//            final byte[] bitmap2 = getBitmapAsByteArray(icon2);
+//            RM.setImage2(bitmap2);
+//
+//            Bitmap icon3 = BitmapFactory.decodeResource(this.getResources(),
+//                    R.drawable.logo);
+//            final byte[] bitmap3 = getBitmapAsByteArray(icon3);
+//            RM.setImage3(bitmap3);
+
             String DaftarMenu = MyUtils.loadJSONFromAsset(this, RM.getReference());
             dataMenu dataMenu = gson.fromJson(DaftarMenu, dataMenu.class);
             List<com.clay.informhalal.dataMenu.Result> results = dataMenu.getResults();
@@ -394,7 +423,14 @@ public class MainActivity extends AppCompatActivity
                 daftarMenu.save();
             }
         }
+    }
 
+
+
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
     }
 
 
