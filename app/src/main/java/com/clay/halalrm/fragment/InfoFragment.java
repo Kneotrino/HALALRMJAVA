@@ -138,23 +138,21 @@ public class InfoFragment extends Fragment {
         List<Bitmap> imageURL = new LinkedList<>();
 
         try {
-            System.out.println("rumahMakan = " + rumahMakan.getFoto1());
-            File file1 = new File(rumahMakan.getFoto1());
-            if (file1.exists()) {
-                Bitmap bitmap = BitmapFactory.decodeFile(rumahMakan.getFoto1());
-                imageURL.add(bitmap);
-            }
-            else {
-                System.out.println("File1 nil");
-            }
+
+                Bitmap bitmap1 = BitmapFactory.decodeFile(rumahMakan.getFoto1());
+                imageURL.add(bitmap1);
+                Bitmap bitmap2 = BitmapFactory.decodeFile(rumahMakan.getFoto2());
+                imageURL.add(bitmap2);
+                Bitmap bitmap3 = BitmapFactory.decodeFile(rumahMakan.getFoto3());
+                imageURL.add(bitmap3);
         }
         catch (Exception e)
         {
 //            e.printStackTrace();
         }
 
-        imageURL.add(rumahMakan.gambar2());
-        imageURL.add(rumahMakan.gambar3());
+        System.out.println("imageURL.size() = " + imageURL.size());
+
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.vpRumahMakan);
         viewPager.setAdapter(new CustomPagerAdapter(getContext(), imageURL));
@@ -249,13 +247,24 @@ public class InfoFragment extends Fragment {
 
             final ImageView imageView = layout.findViewById(modelObject.getImageViewId());
             collection.addView(layout);
-            imageView.setImageBitmap(mImageURL.get(position));
+
+
+            try {
+                Bitmap bitmap = mImageURL.get(position);
+                if (bitmap != null)
+                {
+                    imageView.setImageBitmap(mImageURL.get(position));
+                }
+            }
+            catch (Exception E) {}
 
             layout.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
                     //this will log the page number that was click
                     Log.i("TAG", "This page was clicked: " + position);
-                    SimpanGambar(position);
+
+                    if (mAdmin)
+                        SimpanGambar(position);
 
                 }
             });
@@ -282,7 +291,6 @@ public class InfoFragment extends Fragment {
             return mContext.getString(R.string.app_name);
         }
     }
-    public static final int PICK_IMAGE = 1;
 
     private void SimpanGambar(int position) {
         Intent intent = new Intent();
@@ -290,7 +298,7 @@ public class InfoFragment extends Fragment {
         intent.putExtra("position", position);
         intent.setAction(Intent.ACTION_GET_CONTENT);
 
-        getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        getActivity().startActivityForResult(Intent.createChooser(intent, "Select Picture"), position);
     }
 
 

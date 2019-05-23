@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity
 
 
         UserView();
-        showFloatingActionButton(fab);
+//        showFloatingActionButton(fab);
 
         final boolean checkLocationPermission = checkLocationPermission();
 
@@ -369,9 +369,9 @@ public class MainActivity extends AppCompatActivity
 
     private void InputData() {
         List<String> DATA_ALL = new LinkedList<>();
-//        DATA_ALL.add("RMjawa.json");
+        DATA_ALL.add("RMjawa.json");
         DATA_ALL.add("RMmadura.json");
-//        DATA_ALL.add("RMpadang.json");
+        DATA_ALL.add("RMpadang.json");
         for (String s: DATA_ALL) {
             SiapkanData(s);
         }
@@ -444,13 +444,17 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    int back = 0;
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            back++;
+            makeSnakeBar(null,"Tekan sekali lagi untuk keluar");
+            if (back % 2 == 0)
+                super.onBackPressed();
         }
     }
 

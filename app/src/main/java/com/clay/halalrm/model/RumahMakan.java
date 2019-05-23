@@ -13,44 +13,6 @@ public class RumahMakan extends SugarRecord {
     private String  formatted_address;
     private String  name;
     private String  foto1,foto2,foto3;
-    protected byte[] image1;
-    protected byte[] image2;
-
-    public byte[] getImage2() {
-        return image2;
-    }
-
-    public void setImage2(byte[] image2) {
-        this.image2 = image2;
-    }
-
-    public byte[] getImage3() {
-        return image3;
-    }
-
-    public void setImage3(byte[] image3) {
-        this.image3 = image3;
-    }
-
-    protected byte[] image3;
-
-    public byte[] getImage1() {
-        return image1;
-    }
-
-    public void setImage1(byte[] image1) {
-        this.image1 = image1;
-    }
-
-    public Bitmap gambar1(){
-       return BitmapFactory.decodeByteArray(getImage1(), 0, getImage1().length);
-    };
-    public Bitmap gambar2(){
-       return BitmapFactory.decodeByteArray(getImage2(), 0, getImage2().length);
-    };
-    public Bitmap gambar3(){
-       return BitmapFactory.decodeByteArray(getImage3(), 0, getImage3().length);
-    };
     private String  place_id;
     private String  compound_code;
     private String  global_code;

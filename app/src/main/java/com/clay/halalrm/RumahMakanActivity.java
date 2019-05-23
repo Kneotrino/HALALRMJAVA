@@ -61,24 +61,21 @@ public class RumahMakanActivity extends AppCompatActivity
         }
     };
 
-    public static final int PICK_IMAGE = 1;
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         System.out.println("requestCode = " + requestCode);
-        System.out.println("resultCode = " + resultCode);
+        String filename = rumahMakan.getPlace_id()+rumahMakan.getId()+requestCode+".jpg";
+        System.out.println("filename = " + filename);
+
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
-
-        if (requestCode == PICK_IMAGE) {
+        if (requestCode == 0) {
 
             final Uri uri = data.getData();
-            System.out.println("uri.getPath() = " + uri.getPath());
-            String filename = rumahMakan.getName()+rumahMakan.getId()+".jpg";
-            System.out.println("filename = " + filename);
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
@@ -93,19 +90,42 @@ public class RumahMakanActivity extends AppCompatActivity
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if (requestCode == 1) {
 
+            final Uri uri = data.getData();
 
-//            String filename = rumahMakan.getName()+rumahMakan.getId()+ position+".jpg";
-//            System.out.println("filename = " + filename);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                final ImageSaver saver = new ImageSaver(getApplicationContext())
+                        .setFileName(filename)
+                        .setExternal(false)//image save in external directory or app folder default value is false
+                        .setDirectory("RMgambar");
+                saver.save(bitmap);
+                rumahMakan.setFoto2(saver.getSaved().getPath());
+                rumahMakan.save();
+                switchToInfo();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (requestCode == 2) {
 
-//            if (extras != null) {
-//                Bitmap newProfilePic = extras.getParcelable("data");
-//                      new ImageSaver(getApplicationContext())
-//                                .setFileName(rumahMakan.getName() + position +"_.jpg")
-//                                .setExternal(false)//image save in external directory or app folder default value is false
-//                                .setDirectory("RMgamabar")
-//                                .save(newProfilePic); //Bitmap from your code
-//            }
+            final Uri uri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                final ImageSaver saver = new ImageSaver(getApplicationContext())
+                        .setFileName(filename)
+                        .setExternal(false)//image save in external directory or app folder default value is false
+                        .setDirectory("RMgambar");
+                saver.save(bitmap);
+                rumahMakan.setFoto3(saver.getSaved().getPath());
+                rumahMakan.save();
+                switchToInfo();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 
