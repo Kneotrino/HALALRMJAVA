@@ -27,6 +27,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,9 +36,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.clay.halalrm.fragment.DaftarMenuFragment;
 import com.clay.halalrm.fragment.MainFragment;
 import com.clay.halalrm.fragment.MapFragment;
 import com.clay.halalrm.fragment.RumahMakanFragment;
@@ -50,6 +53,7 @@ import com.clay.informhalal.LocationReceiver;
 import com.clay.informhalal.dataMenu;
 import com.clay.informhalal.geoCode;
 import com.clay.informhalal.googlePlace;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.gson.Gson;
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity
     protected void onDestroy() {
         super.onDestroy();
         locationTracker.stopLocationService(this);
+        SugarContext.terminate();
     }
 
     @Override
@@ -171,79 +176,19 @@ public class MainActivity extends AppCompatActivity
             }
         };
         registerReceiver(receiver, new IntentFilter("my.action"));
+//        unregisterReceiver(receiver);
     }
 
     private void showPlacePicker() {
-        Intent myIntent = new Intent(MainActivity.this, RumahMakanActivity.class);
-        myIntent.putExtra("admin",isAdmin());
-        myIntent.putExtra("key", 1l);
-        myIntent.putExtra("lat", lat);
-        myIntent.putExtra("lng", lng);
+        Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
         startActivity(myIntent);
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == RESULT_OK) {
-//            switch (requestCode) {
-//                case PLACE_PICKER_REQUEST:
-//                    Place place = PlacePicker.getPlace(this, data);
-//                    String placeName = String.format("Place: %s", place.getName());
-//                    double latitude = place.getLatLng().latitude;
-//                    System.out.println("latitude = " + latitude);
-//                    double longitude = place.getLatLng().longitude;
-//                    System.out.println("longitude = " + longitude);
-//                    LatLng coordinate = new LatLng(latitude, longitude);
-//            }
-//        }
-//    }
 
-//    private void showPlacePicker() {
-//
-//        PingPlacePicker.IntentBuilder builder = new PingPlacePicker.IntentBuilder();
-//        builder.setAndroidApiKey(kunci)
-//                .setGeolocationApiKey(kunci);
-//        try {
-//            Intent placeIntent = builder.build(MainActivity.this);
-//            startActivityForResult(placeIntent, PLACE_PICKER_REQUEST);
-//        }
-//        catch (Exception ex) {
-//            // Google Play services is not available...
-//        }
-//    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if ((requestCode == PLACE_PICKER_REQUEST) && (resultCode == RESULT_OK)) {
-//            Place place = PingPlacePicker.Companion.getPlace(data);
-//            if (place != null) {
-//                Toast.makeText(this, "You selected the place: " + place.getName(), Toast.LENGTH_SHORT).show();
-//                System.out.println("place.getLatLng() = " + place.getLatLng());
-//            }
-//        }
-//    }
-
-    private final static int PLACE_PICKER_REQUEST = 111;
-//    private void openPlacePicker() {
-//        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-//        try {
-//            // for activty
-//            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
-//            // for fragment
-//            //startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
-//        } catch (GooglePlayServicesRepairableException e) {
-//            e.printStackTrace();
-//        } catch (GooglePlayServicesNotAvailableException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-        String kunci;
+    String kunci;
     private void getFormattedAddres(double latitude, double longitude) {
         final Uri.Builder builder = new Uri.Builder();
-
         builder.scheme("https")
                 .authority("maps.googleapis.com")
                 .appendPath("maps")
@@ -535,6 +480,8 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
+
     private boolean Login(String user, String pass) {
         ArrayList<String> dataUser = new ArrayList<String>();
         dataUser.add("admin:admin");
@@ -556,15 +503,17 @@ public class MainActivity extends AppCompatActivity
         Admin = admin;
     }
 
+        int id;
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        id = item.getItemId();
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragmentData = null;
 
+        System.out.println("Admin = " + Admin);
         if (id == R.id.nav_all) {
             fragmentData = new RumahMakanFragment();
             setViewDataAll();
@@ -572,13 +521,13 @@ public class MainActivity extends AppCompatActivity
             fragmentData = new MainFragment();
             setViewMain();
         } else if (id == R.id.nav_jawa) {
-            fragmentData = MapFragment.newInstance("RMjawa.json","");
+            fragmentData = MapFragment.newInstance("RMjawa.json",isAdmin());
             setViewMain();
         } else if (id == R.id.nav_padang) {
-            fragmentData = MapFragment.newInstance("RMpadang.json","");
+            fragmentData = MapFragment.newInstance("RMpadang.json",isAdmin());
             setViewMain();
         } else if (id == R.id.nav_madura) {
-            fragmentData = MapFragment.newInstance("RMmadura.json","");
+            fragmentData = MapFragment.newInstance("RMmadura.json",isAdmin());
             setViewMain();
         } else if (id == R.id.nav_exit) {
             System.exit(0);
@@ -599,21 +548,14 @@ public class MainActivity extends AppCompatActivity
         if (isAdmin())
         {
             showFloatingActionButton(fab);
-            fab.setImageResource(android.R.drawable.ic_menu_add);
-
         }
         else {
             hideFloatingActionButton(fab);
         }
-
-
-
     }
 
 
     private void setViewMain() {
-        hideFloatingActionButton(fab);
-        
         if (isAdmin())
             showAddRumahMakan();
         else
@@ -621,9 +563,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void hideAddRumahMakan() {
+        hideFloatingActionButton(fab);
     }
 
     private void showAddRumahMakan() {
+        showFloatingActionButton(fab);
     }
 
     private void hideFloatingActionButton(FloatingActionButton fab) {
@@ -661,22 +605,175 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onListFragmentInteraction(RumahMakan item) {
-        System.out.println("item = " + item);
-        System.out.println("lat = " + lat);
-        System.out.println("lng = " + lng);
-
-        Intent myIntent = new Intent(MainActivity.this, RumahMakanActivity.class);
+    public void onListFragmentInteraction(final RumahMakan item) {
+        final Intent myIntent = new Intent(MainActivity.this, RumahMakanActivity.class);
         myIntent.putExtra("admin",isAdmin());
         myIntent.putExtra("key", item.getId());
         myIntent.putExtra("lat", lat);
         myIntent.putExtra("lng", lng);
-        startActivity(myIntent);
+
+        if  (!Admin)
+            startActivity(myIntent);
+        else {
+            String[] colors = {"Lihat", "Edit", "Hapus", "Batal"};
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Pilih Aksi :"+item.getName());
+            builder.setItems(colors, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // the user clicked on colors[which]
+                    System.out.println("which = " + which);
+                    switch (which) {
+                        case 0:
+                            System.out.println("Lihat");
+                            System.out.println("item = " + item);
+                            startActivity(myIntent);
+                            break;
+                        case 1:
+                            System.out.println("Edit");
+                            EditRumahMakan(item);
+                            break;
+                        case 2:
+                            System.out.println("Hapus");
+                            HapusRumahMakan(item);
+                            break;
+                        case 3:
+                            System.out.println("Batal");
+                            break;
+                    }
+
+                }
+            });
+            builder.setCancelable(false);
+            builder.show();
+        }
     }
+
+    private void EditRumahMakan(RumahMakan item) {
+        System.out.println("Edit.item = " + item);
+        FormRumahMakan(item);
+        ResetDataFragment();
+    }
+
+    private void ResetDataFragment() {
+
+        FragmentTransaction fragmentTransaction = MainActivity.this.getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.FrameFragment,new RumahMakanFragment());
+        fragmentTransaction.commit();
+
+    }
+
+    private void HapusRumahMakan(RumahMakan item) {
+        System.out.println("Hapus.item = " + item);
+        item.delete();
+        ResetDataFragment();
+    }
+
+    private void FormRumahMakan(final RumahMakan item) {
+        LayoutInflater li = LayoutInflater.from(MainActivity.this);
+        View prompt = li.inflate(R.layout.form_rumah_makan, null);
+
+        final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                .setView(prompt)
+                .setTitle("Admin Mode")
+                .setMessage("Masukkan data Rumah Makan")
+                .setPositiveButton("Simpan", null) //Set to null. We override the onclick
+                .setNegativeButton("Batal", null)
+                .create();
+
+
+        final EditText RumahMakanNama = prompt.findViewById(R.id.RumahMakanNama);
+        final EditText RumahMakanRating = prompt.findViewById(R.id.RumahMakanRating);
+        final EditText RumahMakanKode = prompt.findViewById(R.id.RumahMakanKode);
+        final EditText RumahMakanAlamat = prompt.findViewById(R.id.RumahMakanAlamat);
+
+        final List<EditText> editTextList = new LinkedList<>();
+        editTextList.add(RumahMakanNama);
+        editTextList.add(RumahMakanAlamat);
+        editTextList.add(RumahMakanKode);
+
+        final Spinner spinner = prompt.findViewById(R.id.spinner1);
+
+        RumahMakanAlamat.setText(item.getFormatted_address());
+        RumahMakanNama.setText(item.getName());
+        RumahMakanKode.setText(item.getCompound_code());
+        RumahMakanRating.setText(item.getRating().toString());
+
+        switch (item.getGlobal_code()) {
+            case "RMjawa.json":
+                spinner.setSelection(1);
+                break;
+            case "RMmadura.json":
+                spinner.setSelection(0);
+                break;
+            case "RMpadang.json":
+                spinner.setSelection(2);
+                break;
+        }
+
+
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button btnAdd = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                btnAdd .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        if (checkEditText(editTextList)) {
+
+                            item.setFormatted_address(RumahMakanAlamat.getText().toString());
+                            item.setName(RumahMakanNama.getText().toString());
+                            item.setCompound_code(RumahMakanKode.getText().toString());
+                            double value = 0d;
+                            try {
+                                value = Double.parseDouble(RumahMakanRating.getText().toString());
+                            }
+                            catch (Exception E ){
+
+                            }
+                            item.setRating(value);
+                            final int selectedItemPosition = spinner.getSelectedItemPosition();
+
+                            System.out.println("spinner = " + spinner.getSelectedItem());
+                            switch (selectedItemPosition) {
+                                case 0:
+                                    item.setGlobal_code("RMjawa.json");
+                                    break;
+                                case 1:
+                                    item.setGlobal_code("RMmadura.json");
+                                    break;
+                                case 2:
+                                    item.setGlobal_code("RMpadang.json");
+                                    break;
+                            }
+                            item.save();
+                            System.out.println("rumahMakan = " + item);
+                            dialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Berhasil Edit Rumah Makan", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+        dialog.show();
+    }
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {
         System.out.println("uri = " + uri);
+    }
+    private boolean checkEditText(List<EditText> editTextList) {
+
+        for (EditText editText: editTextList) {
+            if (TextUtils.isEmpty(editText.getText().toString())) {
+                editText.setError("Harus isi");
+                return false;
+            }
+        }
+        return true;
     }
 
 }

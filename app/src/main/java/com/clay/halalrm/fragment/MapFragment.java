@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.text.BoringLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
+    private Boolean Admin;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,12 +76,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
      * @return A new instance of fragment MapFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MapFragment newInstance(String param1, String param2) {
+    public static MapFragment newInstance(String param1, Boolean param2) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
         System.out.println("args = " + args);
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putBoolean(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -91,7 +92,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         System.out.println("getArguments() = " + getArguments());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            Admin = getArguments().getBoolean(ARG_PARAM2,false);
         }
     }
 
@@ -190,7 +191,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             @Override public boolean onMarkerClick(Marker marker) {
 
                     Intent myIntent = new Intent(getActivity(), RumahMakanActivity.class);
-                    myIntent.putExtra("admin",false);
+                    myIntent.putExtra("admin",Admin);
                     myIntent.putExtra("key", map.get(marker));
                     myIntent.putExtra("lat", latlng.latitude);
                     myIntent.putExtra("lng", latlng.longitude);

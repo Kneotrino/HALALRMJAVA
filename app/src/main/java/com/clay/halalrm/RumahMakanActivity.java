@@ -1,6 +1,7 @@
 package com.clay.halalrm;
 
 import android.app.Activity;
+import android.app.MediaRouteButton;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -149,7 +150,7 @@ public class RumahMakanActivity extends AppCompatActivity
 
 
     private void switchToMenu() {
-
+        btnAddMenu.setVisibility(View.GONE);
         if (!AdminMode)
             btnAddMenu.setVisibility(View.GONE);
         else
@@ -178,13 +179,9 @@ public class RumahMakanActivity extends AppCompatActivity
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         btnAddMenu = findViewById(R.id.btnAddMenu);
-
-//        SugarContext.init(this);
         SetupView();
-
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchToInfo();
-//        setTitle();
     }
 
     private void SetupView() {

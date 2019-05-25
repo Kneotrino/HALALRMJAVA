@@ -126,7 +126,26 @@
                 android:id="@+id/vpRumahMakan"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_margin="10dp" />
+                android:layout_margin="10dp">
+
+            </android.support.v4.view.ViewPager>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/design_default_color_primary"
+                android:gravity="center"
+                android:text="Rumah Makan"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
+
+            <TextView
+                android:id="@+id/textJenis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rumah Makan"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         </LinearLayout>
     </ScrollView>

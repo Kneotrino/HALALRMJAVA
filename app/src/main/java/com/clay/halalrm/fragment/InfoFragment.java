@@ -111,6 +111,7 @@ public class InfoFragment extends Fragment {
         TextView textRating= (TextView) view.findViewById(R.id.textRating);
         TextView textKode= (TextView) view.findViewById(R.id.textKode);
         TextView textNamaRM= (TextView) view.findViewById(R.id.textNamaRM);
+        TextView textJenis= (TextView) view.findViewById(R.id.textJenis);
 
         final Button buttonJalur = (Button) view.findViewById(R.id.buttonJalur);
         final Button buttonOpenMap = (Button) view.findViewById(R.id.buttonOpenMap);
@@ -134,6 +135,19 @@ public class InfoFragment extends Fragment {
         textRating.setText(rumahMakan.getRating().toString());
         textKode.setText(rumahMakan.getCompound_code());
         textNamaRM.setText(rumahMakan.getName());
+
+        switch (rumahMakan.getGlobal_code()) {
+            case "RMjawa.json":
+                textJenis.setText("Jawa");
+                break;
+            case "RMmadura.json":
+                textJenis.setText("Madura");
+                break;
+            case "RMpadang.json":
+                textJenis.setText("Padang");
+                break;
+        }
+
 
         List<Bitmap> imageURL = new LinkedList<>();
 

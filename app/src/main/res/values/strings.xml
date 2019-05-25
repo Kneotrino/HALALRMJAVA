@@ -20,4 +20,10 @@
     <string name="blue">Biru</string>
     <string name="green">hijau</string>
     <string name="title_activity_maps">Peta RM Halal Kupang</string>
+
+    <string-array name="rumahmakan_arrays">
+        <item>Madura</item>
+        <item>Jawa</item>
+        <item>Padang</item>
+    </string-array>
 </resources>
