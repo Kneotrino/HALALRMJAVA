@@ -408,66 +408,80 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if  (isAdmin())
+            item.setTitle("Admin Mode");
+        else
+            item.setTitle("Admin Logout");
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
 
-            LayoutInflater li = LayoutInflater.from(MainActivity.this);
-            View prompt = li.inflate(R.layout.form_login, null);
-
-            final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
-                    .setView(prompt)
-                    .setTitle("Admin Mode")
-                    .setMessage("Masukkan Username dan Password")
-                    .setPositiveButton("Login", null) //Set to null. We override the onclick
-                    .setNegativeButton("Batal", null)
-                    .create();
-
-            final EditText txtPassword = prompt.findViewById(R.id.txtPassword);
-            final EditText txtUsername = prompt.findViewById(R.id.txtUsername);
-
-            dialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public void onShow(DialogInterface dialogInterface) {
-                    Button btnLogin = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                    btnLogin .setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View view) {
-                            String pass = txtPassword.getText().toString();
-                            String user = txtUsername.getText().toString();
-                            boolean login = Login(user, pass);
-
-                            if (login)  {
-                                navUserSub.setText("Admin Mode");
-                                dialog.dismiss();
-                            }
-                            else {
-                                txtPassword.setError("Salah password");
-                                txtUsername.setError("Salah username");
-
-                            }
-                            makeSnakeBar(null,"Berhasil Masuk Sebagai Admin");
-                            setAdmin(login);
-                        }
-                    });
-                }
-            });
-            dialog.show();
-
-            return true;
-        }
-        if (id == R.id.action_logout) {
-
-            if (!isAdmin())
-                makeSnakeBar(null,"Anda Bukan Admin");
-            else{
+            if  (isAdmin()){
                 makeSnakeBar(null,"Berhasil keluar Admin Mode");
                 navUserSub.setText("Admin Mode");
                 hideFloatingActionButton(fab);
                 setAdmin(false);
+
             }
+            else {
+                LayoutInflater li = LayoutInflater.from(MainActivity.this);
+                View prompt = li.inflate(R.layout.form_login, null);
+
+                final AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                        .setView(prompt)
+                        .setTitle("Admin Mode")
+                        .setMessage("Masukkan Username dan Password")
+                        .setPositiveButton("Login", null) //Set to null. We override the onclick
+                        .setNegativeButton("Batal", null)
+                        .create();
+
+                final EditText txtPassword = prompt.findViewById(R.id.txtPassword);
+                final EditText txtUsername = prompt.findViewById(R.id.txtUsername);
+
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        Button btnLogin = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        btnLogin .setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View view) {
+                                String pass = txtPassword.getText().toString();
+                                String user = txtUsername.getText().toString();
+                                boolean login = Login(user, pass);
+
+                                if (login)  {
+                                    navUserSub.setText("Admin Mode");
+                                    dialog.dismiss();
+                                }
+                                else {
+                                    txtPassword.setError("Salah password");
+                                    txtUsername.setError("Salah username");
+
+                                }
+                                makeSnakeBar(null,"Berhasil Masuk Sebagai Admin");
+                                setAdmin(login);
+                            }
+                        });
+                    }
+                });
+                dialog.show();
+            }
+
+
+            return true;
         }
+//        if (id == R.id.action_logout) {
+//
+//            if (!isAdmin())
+//                makeSnakeBar(null,"Anda Bukan Admin");
+//            else{
+//                makeSnakeBar(null,"Berhasil keluar Admin Mode");
+//                navUserSub.setText("Admin Mode");
+//                hideFloatingActionButton(fab);
+//                setAdmin(false);
+//            }
+//        }
 
         return super.onOptionsItemSelected(item);
     }

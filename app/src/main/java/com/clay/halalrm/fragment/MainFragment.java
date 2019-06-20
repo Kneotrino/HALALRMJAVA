@@ -1,16 +1,25 @@
 package com.clay.halalrm.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.ImageView;
 
 import com.clay.halalrm.R;
+import com.clay.halalrm.fragment.dummy.ModelObject;
+import com.clay.halalrm.fragment.dummy.ModelObjectMain;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,34 +78,53 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View inf = inflater.inflate(R.layout.fragment_main, container, false);
-        WebView htmlView = inf.findViewById(R.id.htmlView);
         String html = "<html><center><b>  "
                 + "Aplikasi LOCATION BASED SERVICE (LBS) <br>"
                 + "Untuk Informasi dan Pencarian Lokasi Rumah Makan Halal  <br>"
                 + "Di Kota Kupang Berbasis Android  <br>"
-                + "<table>\n" +
-                "  <tr>\n" +
-                "    <td>No.Regis </td>\n" +
-                "    <td>= 231 14 047</td>\n" +
-                "  </tr>\n" +
-                "  <tr>\n" +
-                "    <td>Nama</td>\n" +
-                "    <td>= Nisa Aulia</td>\n" +
-                "  </tr>\n" +
-                "  <tr>\n" +
-                "    <td>Program Studi</td>\n" +
-                "    <td>= Ilmu Komputer</td>\n" +
-                "  </tr>\n" +
-                "  <tr>\n" +
-                "    <td>Falkutas</td>\n" +
-                "    <td>= Teknik</td>\n" +
-                "  </tr>\n" +
-                "</table>"
                 + "</font></b></center></html>";
-        htmlView.loadDataWithBaseURL(null, html, "text/html", "utf-8", null);
+
+        ViewPager viewPager = (ViewPager) inf.findViewById(R.id.Slider);
+        viewPager.setAdapter(new CustomPagerAdapter(getContext()));
 
         return inf;
 //        return inflater.inflate(R.layout.fragment_main, container, false);
+    }
+    private class CustomPagerAdapter extends PagerAdapter {
+        private Context mContext;
+
+        public CustomPagerAdapter(Context context) {
+            mContext = context;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup collection, final int position) {
+            final ModelObjectMain modelObject = ModelObjectMain.values()[position];
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            ViewGroup layout = (ViewGroup) inflater.inflate(modelObject.getLayoutResId(), collection, false);
+            collection.addView(layout);
+            return layout;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view) {
+            collection.removeView((View) view);
+        }
+
+        @Override
+        public int getCount() {
+            return ModelObjectMain.values().length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mContext.getString(R.string.app_name);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
