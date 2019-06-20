@@ -1,17 +1,15 @@
 package com.clay.halalrm.fragment;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,17 +21,10 @@ import android.widget.TextView;
 import com.clay.halalrm.R;
 import com.clay.halalrm.fragment.dummy.ModelObject;
 import com.clay.halalrm.model.RumahMakan;
-import com.clay.halalrm.tools.ImageSaver;
-import com.google.android.gms.maps.model.LatLng;
-import com.squareup.picasso.Picasso;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-
-import static java.sql.DriverManager.println;
 
 /**
  * A simple {@link Fragment} subclass.

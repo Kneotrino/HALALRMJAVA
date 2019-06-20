@@ -1,21 +1,18 @@
 package com.clay.halalrm;
 
 import android.app.Activity;
-import android.app.MediaRouteButton;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.annotation.NonNull;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -26,19 +23,13 @@ import android.widget.TextView;
 
 import com.clay.halalrm.fragment.DaftarMenuFragment;
 import com.clay.halalrm.fragment.InfoFragment;
-import com.clay.halalrm.fragment.MainFragment;
-import com.clay.halalrm.fragment.dummy.DummyContent;
 import com.clay.halalrm.model.DaftarMenu;
 import com.clay.halalrm.model.RumahMakan;
 import com.clay.halalrm.tools.ImageSaver;
-import com.orm.SugarContext;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.orm.SugarRecord.save;
 
 public class RumahMakanActivity extends AppCompatActivity
     implements InfoFragment.OnFragmentInteractionListener, DaftarMenuFragment.OnListFragmentInteractionListener

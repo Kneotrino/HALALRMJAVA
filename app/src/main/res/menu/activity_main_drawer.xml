@@ -23,7 +23,7 @@
         <item
             android:id="@+id/nav_all"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="RM Semua" />
+            android:title="Daftar Rumah Makan" />
     </group>
 
     <item android:title="Opsi">
