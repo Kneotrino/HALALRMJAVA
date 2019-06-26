@@ -62,14 +62,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
         LatLng kupang = new LatLng(-10.16572447010728,123.5985479298927);
-
         markerOptions = new MarkerOptions()
                 .title("Tambah Rumah Makan")
                 .position(kupang);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(kupang));//Moves the camera to users current longitude and latitude
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(kupang,(float) 14));//Animates camera and zooms to preferred state on the user's current location.
 

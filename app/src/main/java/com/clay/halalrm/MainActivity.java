@@ -1,6 +1,7 @@
 package com.clay.halalrm;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -408,19 +409,24 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if  (isAdmin())
-            item.setTitle("Admin Mode");
-        else
-            item.setTitle("Admin Logout");
+        final MenuItem menuItem = item;
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
 
             if  (isAdmin()){
+
+                FragmentTransaction fragmentTransaction = MainActivity.this.getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.FrameFragment,new MainFragment());
+                fragmentTransaction.commit();
+                setViewMain();
+
                 makeSnakeBar(null,"Berhasil keluar Admin Mode");
-                navUserSub.setText("Admin Mode");
+                navUserSub.setText("User Mode");
                 hideFloatingActionButton(fab);
                 setAdmin(false);
+                menuItem.setTitle("Admin Mode");
 
             }
             else {
@@ -449,39 +455,34 @@ public class MainActivity extends AppCompatActivity
                                 String pass = txtPassword.getText().toString();
                                 String user = txtUsername.getText().toString();
                                 boolean login = Login(user, pass);
+                                System.out.println("login = " + login);
 
                                 if (login)  {
                                     navUserSub.setText("Admin Mode");
                                     dialog.dismiss();
+                                    setAdmin(true);
+                                    makeSnakeBar(null,"Berhasil Masuk Sebagai Admin");
+                                    menuItem.setTitle("Admin Logout");
+
+                                    FragmentTransaction fragmentTransaction = MainActivity.this.getSupportFragmentManager().beginTransaction();
+                                    fragmentTransaction.replace(R.id.FrameFragment,new RumahMakanFragment());
+                                    fragmentTransaction.commit();
+                                    setViewDataAll();
+
+
                                 }
                                 else {
                                     txtPassword.setError("Salah password");
                                     txtUsername.setError("Salah username");
-
                                 }
-                                makeSnakeBar(null,"Berhasil Masuk Sebagai Admin");
-                                setAdmin(login);
                             }
                         });
                     }
                 });
                 dialog.show();
             }
-
-
             return true;
         }
-//        if (id == R.id.action_logout) {
-//
-//            if (!isAdmin())
-//                makeSnakeBar(null,"Anda Bukan Admin");
-//            else{
-//                makeSnakeBar(null,"Berhasil keluar Admin Mode");
-//                navUserSub.setText("Admin Mode");
-//                hideFloatingActionButton(fab);
-//                setAdmin(false);
-//            }
-//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -670,10 +671,37 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void HapusRumahMakan(RumahMakan item) {
+    private void HapusRumahMakan(final RumahMakan item) {
         System.out.println("Hapus.item = " + item);
-        item.delete();
-        ResetDataFragment();
+
+        AlertDialog HapusDialog =new AlertDialog.Builder(this)
+                //set message, title, and icon
+                .setTitle("Hapus")
+                .setMessage("Anda Yakin untuk Hapus")
+
+                .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //your deleting code
+                        item.delete();
+                        dialog.dismiss();
+                        ResetDataFragment();
+
+                    }
+
+                })
+
+
+
+                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+        HapusDialog.show();
     }
 
     private void FormRumahMakan(final RumahMakan item) {

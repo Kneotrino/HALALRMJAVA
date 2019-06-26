@@ -305,10 +305,10 @@ public class RumahMakanActivity extends AppCompatActivity
             public void onShow(DialogInterface dialogInterface) {
 
                 Button btnSimpan = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE);
-                Button btnBatal = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
+                Button btnHapus = ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE);
 
 
-                btnBatal.setText("Hapus");
+                btnHapus.setText("Hapus");
                 btnSimpan.setText("Edit");
 
                 btnSimpan.setOnClickListener(new View.OnClickListener() {
@@ -326,13 +326,29 @@ public class RumahMakanActivity extends AppCompatActivity
                         }
                     }
                 });
-                btnBatal.setOnClickListener(new View.OnClickListener() {
+                btnHapus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                            System.out.println("delete.daftarMenu = " + item);
-                            item.delete();
-                            dialog.dismiss();
-                            switchToMenu();
+                        System.out.println("delete.daftarMenu = " + item);
+                        AlertDialog HapusDialog =new AlertDialog.Builder(RumahMakanActivity.this)
+                                .setTitle("Hapus")
+                                .setMessage("Anda Yakin untuk Hapus")
+                                .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        //your deleting code
+                                        item.delete();
+                                        dialog.dismiss();
+                                        switchToMenu();
+                                    }
+                                })
+                                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .create();
+                        HapusDialog.show();
+                        dialog.dismiss();
                     }
                 });
 
